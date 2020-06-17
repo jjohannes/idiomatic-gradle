@@ -13,6 +13,9 @@ public class Member {
 
     /**
      * Create a new member with the given name.
+     *
+     * @param name the name
+     * @return new member instance
      */
     public static Member member(String name) {
         return new Member(name);
@@ -20,6 +23,8 @@ public class Member {
 
     /**
      * The member's name.
+     *
+     * @return the name
      */
     public String getName() {
         return name;
