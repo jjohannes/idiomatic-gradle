@@ -4,6 +4,7 @@ plugins {
     id("buildlogic.versioning")
     `java-library`
     `java-test-fixtures`
+    jacoco
 }
 
 configurations.create("transitiveSourcesElements") {
@@ -70,4 +71,25 @@ class ServerJarArgumentProvider(objects: ObjectFactory, path: Configuration) : C
     val serverJarPath: ConfigurableFileCollection = objects.fileCollection().from(path)
 
     override fun asArguments() = listOf("-DserverJar=${serverJarPath.singleFile}")
+}
+
+tasks.jacocoTestReport.configure {
+    enabled = false
+}
+
+configurations.create("coverageDataElements") {
+    isVisible = false
+    isCanBeResolved = false
+    isCanBeConsumed = true
+    extendsFrom(configurations.implementation.get())
+    attributes {
+        attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage.JAVA_RUNTIME))
+        attribute(Category.CATEGORY_ATTRIBUTE, objects.named(Category.DOCUMENTATION))
+        attribute(DocsType.DOCS_TYPE_ATTRIBUTE, objects.named("jacoco-coverage-data"))
+    }
+    outgoing.artifact(tasks.test.flatMap { task ->
+        provider { task.extensions.getByType<JacocoTaskExtension>().destinationFile }
+    }) {
+        builtBy(tasks.test)
+    }
 }
