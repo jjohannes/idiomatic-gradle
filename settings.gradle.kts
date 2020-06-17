@@ -1,9 +1,9 @@
 rootProject.name = "idiomatic-gradle"
 
-includeBuild("buildlogic/versioning")
-includeBuild("buildlogic/java-conventions")
-includeBuild("buildlogic/server-packaging")
-includeBuild("buildlogic/api-publication")
+includeBuild("buildlogic/buildlogic-versioning")
+includeBuild("buildlogic/buildlogic-java-convention")
+includeBuild("buildlogic/buildlogic-packaging")
+includeBuild("buildlogic/buildlogic-publication")
 
 subproject("product", "platform")
 subproject("product/common", "ig-data")
