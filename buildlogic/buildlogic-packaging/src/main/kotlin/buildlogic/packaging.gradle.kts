@@ -11,11 +11,7 @@ plugins {
 }
 
 // Configurations to declare dependencies
-val packaging: Configuration by configurations.creating {
-    isVisible = false
-    isCanBeResolved = false
-    isCanBeConsumed = false
-}
+val packaging: Configuration by configurations.creating { isVisible = false; isCanBeResolved = false; isCanBeConsumed = false }
 
 // Resolvable configuration to resolve the classes of all dependencies
 val packagingClasspath: Configuration by configurations.creating {
@@ -23,11 +19,16 @@ val packagingClasspath: Configuration by configurations.creating {
     isCanBeResolved = true
     isCanBeConsumed = false
     extendsFrom(packaging)
-    attributes {
-        attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage.JAVA_RUNTIME))
-        attribute(Category.CATEGORY_ATTRIBUTE, objects.named(Category.LIBRARY))
-        attribute(LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE, objects.named(LibraryElements.CLASSES))
-        attribute(Bundling.BUNDLING_ATTRIBUTE, objects.named(Bundling.EXTERNAL))
+}
+
+java {
+    configure {
+        configureAsRuntimeClasspath(packagingClasspath) // TODO this should also be able to create the configuration for me so I don't need to do that above
+        /*configureAttributes(packagingClasspath) {
+            runtimeUsage()
+            library() // have an argument here for the LIBRARY_ELEMENTS_ATTRIBUTE (e.g. 'classes')? Similar as we have for documentation(...)?
+            withEmbeddedDependencies()
+        }*/
     }
 }
 
@@ -71,17 +72,12 @@ abstract class ClassesExtraction : TransformAction<TransformParameters.None> {
 }
 
 // Consumable configuration such that other projects can consume the executable Jar for end2end testing
-configurations.create("runtimeElements") {
-    isVisible = false
-    isCanBeResolved = false
-    isCanBeConsumed = true
-    outgoing.artifact(executableFatJar)
-
-    attributes {
-        attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage.JAVA_RUNTIME))
-        attribute(Category.CATEGORY_ATTRIBUTE, objects.named(Category.LIBRARY))
-        attribute(LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE, objects.named(LibraryElements.JAR))
-        attribute(Bundling.BUNDLING_ATTRIBUTE, objects.named(Bundling.EMBEDDED))
+java {
+    configure {
+        createOutgoingElements("runtimeElements") {
+            providesRuntime()
+            addArtifact(executableFatJar as TaskProvider<Task>)
+        }
     }
 }
 

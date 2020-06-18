@@ -16,10 +16,13 @@ val sourcesPath: Configuration by configurations.creating {
     isCanBeResolved = true
     isCanBeConsumed = false
     extendsFrom(packaging)
-    attributes {
-        attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage.JAVA_RUNTIME))
-        attribute(Category.CATEGORY_ATTRIBUTE, objects.named(Category.DOCUMENTATION))
-        attribute(DocsType.DOCS_TYPE_ATTRIBUTE, objects.named("source-folders"))
+}
+java {
+    configure {
+        configureAttributes(sourcesPath) {
+            runtimeUsage()
+            documentation("source-folders")
+        }
     }
 }
 
@@ -29,10 +32,13 @@ val coverageDataPath: Configuration by configurations.creating {
     isCanBeResolved = true
     isCanBeConsumed = false
     extendsFrom(packaging)
-    attributes {
-        attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage.JAVA_RUNTIME))
-        attribute(Category.CATEGORY_ATTRIBUTE, objects.named(Category.DOCUMENTATION))
-        attribute(DocsType.DOCS_TYPE_ATTRIBUTE, objects.named("jacoco-coverage-data"))
+}
+java {
+    configure {
+        configureAttributes(coverageDataPath) {
+            runtimeUsage()
+            documentation("jacoco-coverage-data")
+        }
     }
 }
 

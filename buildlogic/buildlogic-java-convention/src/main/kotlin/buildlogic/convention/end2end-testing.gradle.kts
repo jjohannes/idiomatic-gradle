@@ -5,20 +5,21 @@ plugins {
 }
 
 // Configuration to define dependencies to and resolve the packged server Jar
-val serverRuntime: Configuration by configurations.creating {
-    isVisible = false
-    isCanBeConsumed = false
-    isCanBeResolved = false
-}
+// TODO where can we have a utility to create such a bucket?
+val serverRuntime: Configuration by configurations.creating {  isVisible = false; isCanBeConsumed = false; isCanBeResolved = false }
+
 val serverRuntimePath: Configuration by configurations.creating {
     isVisible = false
     isCanBeConsumed = false
     isCanBeResolved = true
     extendsFrom(serverRuntime)
-    attributes {
-        attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage.JAVA_RUNTIME))
-        attribute(Category.CATEGORY_ATTRIBUTE, objects.named(Category.LIBRARY))
-        attribute(LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE, objects.named(LibraryElements.JAR))
+}
+
+java {
+    configure {
+        configureAttributes(serverRuntimePath) { // TODO this should also be able to create the configuration for me so I don't need to do that above
+            runtimeUsage()
+        }
     }
 }
 

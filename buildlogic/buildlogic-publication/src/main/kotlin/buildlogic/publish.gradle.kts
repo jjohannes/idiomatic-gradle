@@ -18,10 +18,14 @@ val sourcesPath: Configuration by configurations.creating {
     isCanBeResolved = true
     isCanBeConsumed = false
     extendsFrom(configurations.implementation.get())
-    attributes {
-        attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage.JAVA_RUNTIME))
-        attribute(Category.CATEGORY_ATTRIBUTE, objects.named(Category.DOCUMENTATION))
-        attribute(DocsType.DOCS_TYPE_ATTRIBUTE, objects.named("source-folders"))
+}
+
+java {
+    configure {
+        configureAttributes(sourcesPath) { // TODO this should also be able to create the configuration for me so I don't need to do that above
+            runtimeUsage() // Would be nice is this would be the default if the configuration would be created here
+            documentation("source-folders")
+        }
     }
 }
 
