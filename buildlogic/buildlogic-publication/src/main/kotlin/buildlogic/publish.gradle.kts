@@ -14,7 +14,7 @@ java {
 
 java {
     configure {
-        createResolvableGraph("sources") {
+        createResolvableGraph("sourcesPath") {
             extendsFrom(configurations.implementation)
             attributes {
                 runtimeUsage()
@@ -24,7 +24,7 @@ java {
     }
 }
 
-val sourcesResolution by configurations.getting
+val sourcesPath by configurations.getting
 
 // Configure the 'jar', 'javadoc' and 'sourcesJar' tasks to use the classes/sources of all dependencies as input
 tasks {
@@ -36,11 +36,11 @@ tasks {
     javadoc.configure {
         classpath = configurations.runtimeClasspath.get()
         // Be lenient as third party dependencies to not offer their source code in a folder (and we do now want to include these in our Javadoc)
-        source(sourcesResolution.incoming.artifactView { lenient(true) }.files)
+        source(sourcesPath.incoming.artifactView { lenient(true) }.files)
     }
     named<Jar>("sourcesJar").configure {
         // Be lenient as third party dependencies to not offer their source code in a folder (and we do not want to package it)
-        from(sourcesResolution.incoming.artifactView { lenient(true) }.files)
+        from(sourcesPath.incoming.artifactView { lenient(true) }.files)
     }
 }
 

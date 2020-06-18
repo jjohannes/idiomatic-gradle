@@ -7,44 +7,34 @@ plugins {
 }
 
 // These are defined in 'packaging.gradle.kts'
-val packaging: Configuration by configurations.getting
-val packagingResolution: Configuration by configurations.getting
+val packaging by configurations.getting
+val packagingPath by configurations.getting
 
-// A resolvable configuration to collect source code
-val sourcesPath: Configuration by configurations.creating {
-    isVisible = false
-    isCanBeResolved = true
-    isCanBeConsumed = false
-    extendsFrom(packaging)
-}
 java {
     configure {
-        configureAttributes(sourcesPath) {
-            runtimeUsage()
-            documentation("source-folders")
+        createResolvableGraph("sourcesPath") {
+            extendsFrom(packaging)
+            attributes {
+                runtimeUsage()
+                documentation("source-folders")
+            }
+        }
+        createResolvableGraph("coverageDataPath") {
+            extendsFrom(packaging)
+            attributes {
+                runtimeUsage()
+                documentation("jacoco-coverage-data")
+            }
         }
     }
 }
 
-// A resolvable configuration to collect JaCoCo coverage data
-val coverageDataPath: Configuration by configurations.creating {
-    isVisible = false
-    isCanBeResolved = true
-    isCanBeConsumed = false
-    extendsFrom(packaging)
-}
-java {
-    configure {
-        configureAttributes(coverageDataPath) {
-            runtimeUsage()
-            documentation("jacoco-coverage-data")
-        }
-    }
-}
+val sourcesPath by configurations.getting
+val coverageDataPath by configurations.getting
 
 // Register a code coverage report task to generate the aggregated report
 val codeCoverageReport by tasks.registering(JacocoReport::class) {
-    additionalClassDirs(packagingResolution)
+    additionalClassDirs(packagingPath)
     additionalSourceDirs(sourcesPath.incoming.artifactView { lenient(true) }.files)
     executionData(coverageDataPath.incoming.artifactView { lenient(true) }.files)
 

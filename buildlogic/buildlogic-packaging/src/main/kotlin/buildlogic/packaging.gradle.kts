@@ -12,7 +12,8 @@ plugins {
 
 java {
     configure {
-        createResolvableGraph("packaging") {
+        createResolvableGraph("packagingPath") {
+            usingDependencyBucket("packaging")
             requiresJavaLibrariesRuntime()
             attributes {
                 library(LibraryElements.CLASSES)
@@ -24,7 +25,7 @@ java {
 // A Jar task that collects all classes from dependent projects - to obtain the classes of external dependencies, a artifact transform is registered to extract Jars
 val artifactType = Attribute.of("artifactType", String::class.java)
 val executableFatJar by tasks.registering(Jar::class) {
-    from(configurations.getByName("packagingResolution").incoming.artifactView {
+    from(configurations.getByName("packagingPath").incoming.artifactView {
         attributes.attribute(artifactType, LibraryElements.CLASSES)
     }.files)
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
