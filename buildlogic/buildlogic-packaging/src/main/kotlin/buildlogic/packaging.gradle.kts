@@ -10,32 +10,21 @@ plugins {
     `java-base` // Note: because many things from 'java-library' are not needed (e.g. projects applying this plugin have no src code), we only apply 'java-base'.
 }
 
-// Configurations to declare dependencies
-val packaging: Configuration by configurations.creating { isVisible = false; isCanBeResolved = false; isCanBeConsumed = false }
-
-// Resolvable configuration to resolve the classes of all dependencies
-val packagingClasspath: Configuration by configurations.creating {
-    isVisible = false
-    isCanBeResolved = true
-    isCanBeConsumed = false
-    extendsFrom(packaging)
-}
-
 java {
     configure {
-        configureAsRuntimeClasspath(packagingClasspath) // TODO this should also be able to create the configuration for me so I don't need to do that above
-        /*configureAttributes(packagingClasspath) {
-            runtimeUsage()
-            library() // have an argument here for the LIBRARY_ELEMENTS_ATTRIBUTE (e.g. 'classes')? Similar as we have for documentation(...)?
-            withEmbeddedDependencies()
-        }*/
+        createResolvableGraph("packaging") {
+            requiresJavaLibrariesRuntime()
+            attributes {
+                library(LibraryElements.CLASSES)
+            }
+        }
     }
 }
 
 // A Jar task that collects all classes from dependent projects - to obtain the classes of external dependencies, a artifact transform is registered to extract Jars
 val artifactType = Attribute.of("artifactType", String::class.java)
 val executableFatJar by tasks.registering(Jar::class) {
-    from(packagingClasspath.incoming.artifactView {
+    from(configurations.getByName("packagingResolution").incoming.artifactView {
         attributes.attribute(artifactType, LibraryElements.CLASSES)
     }.files)
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
@@ -76,7 +65,7 @@ java {
     configure {
         createOutgoingElements("runtimeElements") {
             providesRuntime()
-            addArtifact(executableFatJar as TaskProvider<Task>)
+            addArtifact(executableFatJar)
         }
     }
 }

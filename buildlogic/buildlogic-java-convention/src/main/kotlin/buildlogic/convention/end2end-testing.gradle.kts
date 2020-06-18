@@ -4,21 +4,12 @@ plugins {
     `java-library`
 }
 
-// Configuration to define dependencies to and resolve the packged server Jar
-// TODO where can we have a utility to create such a bucket?
-val serverRuntime: Configuration by configurations.creating {  isVisible = false; isCanBeConsumed = false; isCanBeResolved = false }
-
-val serverRuntimePath: Configuration by configurations.creating {
-    isVisible = false
-    isCanBeConsumed = false
-    isCanBeResolved = true
-    extendsFrom(serverRuntime)
-}
-
 java {
     configure {
-        configureAttributes(serverRuntimePath) { // TODO this should also be able to create the configuration for me so I don't need to do that above
-            runtimeUsage()
+        createResolvableGraph("serverRuntime") {
+            attributes {
+                runtimeUsage()
+            }
         }
     }
 }
@@ -42,7 +33,7 @@ val end2endTestTask = tasks.register<Test>("end2endTest") {
     testClassesDirs = end2endTest.output.classesDirs
     classpath = configurations[end2endTest.runtimeClasspathConfigurationName] + files(end2endTestTestJarTask)
 
-    jvmArgumentProviders.add(ServerJarArgumentProvider(project.objects, serverRuntimePath))
+    jvmArgumentProviders.add(ServerJarArgumentProvider(project.objects, configurations.getByName("serverRuntimeResolution")))
 }
 class ServerJarArgumentProvider(objects: ObjectFactory, path: Configuration) : CommandLineArgumentProvider {
     @get:Classpath

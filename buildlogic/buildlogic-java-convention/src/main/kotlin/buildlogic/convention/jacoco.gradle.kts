@@ -15,19 +15,10 @@ java {
     configure {
         createOutgoingElements("coverageDataElements") {
             attributes { documentation("jacoco-coverage-data") }
-            extendsFrom(configurations.implementation.get())
-            //sourceSets.main.get().java.srcDirs.forEach {
-                // TODO Something like this should work -> addArtifact(tasks.test.flatMap { task -> provider { task.extensions.getByType<JacocoTaskExtension>().destinationFile } })
-            //}
+            extendsFrom(configurations.implementation)
+            addArtifact(tasks.test.map { task ->
+                task.extensions.getByType<JacocoTaskExtension>().destinationFile!!
+            })
         }
-    }
-}
-
-// TODO needed because addArtifact() above does not work
-configurations.named("coverageDataElements") {
-    outgoing.artifact(tasks.test.flatMap { task ->
-        provider { task.extensions.getByType<JacocoTaskExtension>().destinationFile }
-    }) {
-        builtBy(tasks.test)
     }
 }
