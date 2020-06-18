@@ -12,22 +12,19 @@ java {
     withSourcesJar()
 }
 
-// A resolvable configuration to collect source code
-val sourcesPath: Configuration by configurations.creating {
-    isVisible = false
-    isCanBeResolved = true
-    isCanBeConsumed = false
-    extendsFrom(configurations.implementation.get())
-}
-
 java {
     configure {
-        configureAttributes(sourcesPath) { // TODO this should also be able to create the configuration for me so I don't need to do that above
-            runtimeUsage() // Would be nice is this would be the default if the configuration would be created here
-            documentation("source-folders")
+        createResolvableGraph("sources") {
+            extendsFrom(configurations.implementation)
+            attributes {
+                runtimeUsage()
+                documentation("source-folders")
+            }
         }
     }
 }
+
+val sourcesResolution by configurations.getting
 
 // Configure the 'jar', 'javadoc' and 'sourcesJar' tasks to use the classes/sources of all dependencies as input
 tasks {
@@ -39,11 +36,11 @@ tasks {
     javadoc.configure {
         classpath = configurations.runtimeClasspath.get()
         // Be lenient as third party dependencies to not offer their source code in a folder (and we do now want to include these in our Javadoc)
-        source(sourcesPath.incoming.artifactView { lenient(true) }.files)
+        source(sourcesResolution.incoming.artifactView { lenient(true) }.files)
     }
     named<Jar>("sourcesJar").configure {
         // Be lenient as third party dependencies to not offer their source code in a folder (and we do not want to package it)
-        from(sourcesPath.incoming.artifactView { lenient(true) }.files)
+        from(sourcesResolution.incoming.artifactView { lenient(true) }.files)
     }
 }
 

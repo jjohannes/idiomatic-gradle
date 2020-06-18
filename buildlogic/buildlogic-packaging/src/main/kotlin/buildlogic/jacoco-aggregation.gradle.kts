@@ -8,7 +8,7 @@ plugins {
 
 // These are defined in 'packaging.gradle.kts'
 val packaging: Configuration by configurations.getting
-val packagingClasspath: Configuration by configurations.getting
+val packagingResolution: Configuration by configurations.getting
 
 // A resolvable configuration to collect source code
 val sourcesPath: Configuration by configurations.creating {
@@ -44,7 +44,7 @@ java {
 
 // Register a code coverage report task to generate the aggregated report
 val codeCoverageReport by tasks.registering(JacocoReport::class) {
-    additionalClassDirs(packagingClasspath)
+    additionalClassDirs(packagingResolution)
     additionalSourceDirs(sourcesPath.incoming.artifactView { lenient(true) }.files)
     executionData(coverageDataPath.incoming.artifactView { lenient(true) }.files)
 
