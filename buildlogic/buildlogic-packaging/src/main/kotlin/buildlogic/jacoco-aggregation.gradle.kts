@@ -1,13 +1,16 @@
 package buildlogic
 
+// A plugin building on top of 'buildlogic.packaging' to aggregate a JaCoCo report for the tests of all things included in the executable Jar
 plugins {
-    `java-base`
+    id("buildlogic.packaging")
     jacoco
 }
 
+// These are defined in 'packaging.gradle.kts'
 val packaging: Configuration by configurations.getting
 val packagingClasspath: Configuration by configurations.getting
 
+// A resolvable configuration to collect source code
 val sourcesPath: Configuration by configurations.creating {
     isVisible = false
     isCanBeResolved = true
@@ -20,6 +23,7 @@ val sourcesPath: Configuration by configurations.creating {
     }
 }
 
+// A resolvable configuration to collect JaCoCo coverage data
 val coverageDataPath: Configuration by configurations.creating {
     isVisible = false
     isCanBeResolved = true
@@ -32,7 +36,8 @@ val coverageDataPath: Configuration by configurations.creating {
     }
 }
 
-tasks.register<JacocoReport>("codeCoverageReport") {
+// Register a code coverage report task to generate the aggregated report
+val codeCoverageReport by tasks.registering(JacocoReport::class) {
     additionalClassDirs(packagingClasspath)
     additionalSourceDirs(sourcesPath.incoming.artifactView { lenient(true) }.files)
     executionData(coverageDataPath.incoming.artifactView { lenient(true) }.files)
@@ -41,4 +46,9 @@ tasks.register<JacocoReport>("codeCoverageReport") {
         html.isEnabled = true
         xml.isEnabled = true
     }
+}
+
+// Make JaCoCo report generation part of the 'check' lifecycle phase
+tasks.check.configure {
+    dependsOn(codeCoverageReport)
 }

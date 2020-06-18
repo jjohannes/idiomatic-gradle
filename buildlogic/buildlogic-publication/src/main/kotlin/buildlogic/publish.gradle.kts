@@ -1,5 +1,6 @@
 package buildlogic
 
+// This plugin collects artifacts from the dependent projects to publish everything in a fat Jar
 plugins {
     id("buildlogic.versioning")
     `java-library`
@@ -11,6 +12,7 @@ java {
     withSourcesJar()
 }
 
+// A resolvable configuration to collect source code
 val sourcesPath: Configuration by configurations.creating {
     isVisible = false
     isCanBeResolved = true
@@ -23,24 +25,27 @@ val sourcesPath: Configuration by configurations.creating {
     }
 }
 
-val localRepository = layout.buildDirectory.dir("repo")
-
-tasks.jar.configure {
-    from(configurations.runtimeClasspath.get().incoming.artifactView {
-        attributes.attribute(LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE, objects.named(LibraryElements.CLASSES))
-    }.files.filter { it.isDirectory })
-}
-
-tasks.javadoc.configure {
-    classpath = configurations.runtimeClasspath.get()
-    source(sourcesPath.incoming.artifactView { lenient(true) }.files)
-}
-
-tasks.named<Jar>("sourcesJar").configure {
-    from(sourcesPath.incoming.artifactView { lenient(true) }.files)
+// Configure the 'jar', 'javadoc' and 'sourcesJar' tasks to use the classes/sources of all dependencies as input
+tasks {
+    jar.configure {
+        from(configurations.runtimeClasspath.get().incoming.artifactView {
+            attributes.attribute(LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE, objects.named(LibraryElements.CLASSES))
+        }.files.filter { it.isDirectory })
+    }
+    javadoc.configure {
+        classpath = configurations.runtimeClasspath.get()
+        // Be lenient as third party dependencies to not offer their source code in a folder (and we do now want to include these in our Javadoc)
+        source(sourcesPath.incoming.artifactView { lenient(true) }.files)
+    }
+    named<Jar>("sourcesJar").configure {
+        // Be lenient as third party dependencies to not offer their source code in a folder (and we do not want to package it)
+        from(sourcesPath.incoming.artifactView { lenient(true) }.files)
+    }
 }
 
 publishing {
+    // A local repository for testing
+    val localRepository = layout.buildDirectory.dir("repo")
     repositories {
         maven {
             name = "local"
@@ -61,3 +66,4 @@ publishing {
         }
     }
 }
+

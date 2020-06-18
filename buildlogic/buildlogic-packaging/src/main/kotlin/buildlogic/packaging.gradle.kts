@@ -4,18 +4,20 @@ import java.nio.file.Files
 import java.util.jar.Attributes
 import java.util.zip.ZipFile
 
+// This plugin collects artifacts from the dependent projects to publish everything as a stand-alone executable Jar with a 'IgServer' class as entry point
 plugins {
     id("buildlogic.versioning")
-    `java-base`
+    `java-base` // Note: because many things from 'java-library' are not needed (e.g. projects applying this plugin have no src code), we only apply 'java-base'.
 }
 
-val artifactType = Attribute.of("artifactType", String::class.java)
-
+// Configurations to declare dependencies
 val packaging: Configuration by configurations.creating {
     isVisible = false
     isCanBeResolved = false
     isCanBeConsumed = false
 }
+
+// Resolvable configuration to resolve the classes of all dependencies
 val packagingClasspath: Configuration by configurations.creating {
     isVisible = false
     isCanBeResolved = true
@@ -29,7 +31,9 @@ val packagingClasspath: Configuration by configurations.creating {
     }
 }
 
-val fatJar by tasks.registering(Jar::class) {
+// A Jar task that collects all classes from dependent projects - to obtain the classes of external dependencies, a artifact transform is registered to extract Jars
+val artifactType = Attribute.of("artifactType", String::class.java)
+val executableFatJar by tasks.registering(Jar::class) {
     from(packagingClasspath.incoming.artifactView {
         attributes.attribute(artifactType, LibraryElements.CLASSES)
     }.files)
@@ -37,33 +41,11 @@ val fatJar by tasks.registering(Jar::class) {
     manifest.attributes(mapOf(
             Attributes.Name.MAIN_CLASS.toString() to "com.example.idiomatic.gradle.server.IgServer"))
 }
-tasks.assemble.configure {
-    dependsOn(fatJar)
+dependencies.registerTransform(ClassesExtraction::class) {
+    from.attribute(artifactType, LibraryElements.JAR)
+    to.attribute(artifactType, LibraryElements.CLASSES)
 }
-val runtimeElements: Configuration by configurations.creating {
-    isVisible = false
-    isCanBeResolved = false
-    isCanBeConsumed = true
-    outgoing.artifact(fatJar)
-
-    attributes {
-        attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage.JAVA_RUNTIME))
-        attribute(Category.CATEGORY_ATTRIBUTE, objects.named(Category.LIBRARY))
-        attribute(LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE, objects.named(LibraryElements.JAR))
-        attribute(Bundling.BUNDLING_ATTRIBUTE, objects.named(Bundling.EMBEDDED))
-    }
-}
-
-
-dependencies {
-    registerTransform(ClassesExtraction::class.java) {
-        from.attribute(artifactType, LibraryElements.JAR)
-        to.attribute(artifactType, LibraryElements.CLASSES)
-    }
-}
-
 abstract class ClassesExtraction : TransformAction<TransformParameters.None> {
-
     @get:InputArtifact
     abstract val inputArtifact: Provider<FileSystemLocation>
 
@@ -72,6 +54,7 @@ abstract class ClassesExtraction : TransformAction<TransformParameters.None> {
         val output = outputs.dir("classes")
         extractJar(input, output)
     }
+
     private fun extractJar(input: File, output: File) {
         ZipFile(input).use { jarFile ->
             jarFile.entries().asIterator().forEach { zipEntry ->
@@ -85,4 +68,24 @@ abstract class ClassesExtraction : TransformAction<TransformParameters.None> {
             }
         }
     }
+}
+
+// Consumable configuration such that other projects can consume the executable Jar for end2end testing
+configurations.create("runtimeElements") {
+    isVisible = false
+    isCanBeResolved = false
+    isCanBeConsumed = true
+    outgoing.artifact(executableFatJar)
+
+    attributes {
+        attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage.JAVA_RUNTIME))
+        attribute(Category.CATEGORY_ATTRIBUTE, objects.named(Category.LIBRARY))
+        attribute(LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE, objects.named(LibraryElements.JAR))
+        attribute(Bundling.BUNDLING_ATTRIBUTE, objects.named(Bundling.EMBEDDED))
+    }
+}
+
+// Make building the executable jar part of the 'assemble' lifecycle phase
+tasks.assemble.configure {
+    dependsOn(executableFatJar)
 }

@@ -5,10 +5,12 @@ plugins {
     jacoco
 }
 
+// Do not generate reports for individual projects
 tasks.jacocoTestReport.configure {
     enabled = false
 }
 
+// Share the coverage data to be aggregated for the whole product
 configurations.create("coverageDataElements") {
     isVisible = false
     isCanBeResolved = false
