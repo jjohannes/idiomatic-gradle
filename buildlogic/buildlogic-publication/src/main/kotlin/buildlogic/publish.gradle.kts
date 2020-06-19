@@ -12,19 +12,13 @@ java {
     withSourcesJar()
 }
 
-java {
-    configure {
-        createResolvableGraph("sourcesPath") {
-            extendsFrom(configurations.implementation)
-            attributes {
-                runtimeUsage()
-                documentation("source-folders")
-            }
-        }
+val sourcesPath = java.modeling.createResolvableGraph("sourcesPath") {
+    extendsFrom(configurations.implementation)
+    attributes {
+        runtimeUsage()
+        documentation("source-folders")
     }
 }
-
-val sourcesPath by configurations.getting
 
 // Configure the 'jar', 'javadoc' and 'sourcesJar' tasks to use the classes/sources of all dependencies as input
 tasks {

@@ -10,22 +10,18 @@ plugins {
     `java-base` // Note: because many things from 'java-library' are not needed (e.g. projects applying this plugin have no src code), we only apply 'java-base'.
 }
 
-java {
-    configure {
-        createResolvableGraph("packagingPath") {
-            usingDependencyBucket("packaging")
-            requiresJavaLibrariesRuntime()
-            attributes {
-                library(LibraryElements.CLASSES)
-            }
-        }
+val packagingPath = java.modeling.createResolvableGraph("packagingPath") {
+    usingDependencyBucket("packaging")
+    requiresJavaLibrariesRuntime()
+    attributes {
+        library(LibraryElements.CLASSES)
     }
 }
 
 // A Jar task that collects all classes from dependent projects - to obtain the classes of external dependencies, a artifact transform is registered to extract Jars
 val artifactType = Attribute.of("artifactType", String::class.java)
 val executableFatJar by tasks.registering(Jar::class) {
-    from(configurations.getByName("packagingPath").incoming.artifactView {
+    from(packagingPath.incoming.artifactView {
         attributes.attribute(artifactType, LibraryElements.CLASSES)
     }.files)
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
@@ -63,7 +59,7 @@ abstract class ClassesExtraction : TransformAction<TransformParameters.None> {
 
 // Consumable configuration such that other projects can consume the executable Jar for end2end testing
 java {
-    configure {
+    modeling {
         createOutgoingElements("runtimeElements") {
             providesRuntime()
             addArtifact(executableFatJar)

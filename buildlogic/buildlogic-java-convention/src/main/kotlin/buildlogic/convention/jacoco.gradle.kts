@@ -12,7 +12,7 @@ tasks.jacocoTestReport.configure {
 
 // Share the coverage data to be aggregated for the whole product
 java {
-    configure {
+    modeling {
         createOutgoingElements("coverageDataElements") {
             attributes { documentation("jacoco-coverage-data") }
             extendsFrom(configurations.implementation)

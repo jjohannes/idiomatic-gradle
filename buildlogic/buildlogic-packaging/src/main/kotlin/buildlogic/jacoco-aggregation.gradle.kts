@@ -11,7 +11,7 @@ val packaging by configurations.getting
 val packagingPath by configurations.getting
 
 java {
-    configure {
+    modeling {
         createResolvableGraph("sourcesPath") {
             extendsFrom(packaging)
             attributes {

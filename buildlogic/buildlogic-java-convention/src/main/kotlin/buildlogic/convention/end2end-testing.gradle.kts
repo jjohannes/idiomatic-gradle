@@ -5,7 +5,7 @@ plugins {
 }
 
 java {
-    configure {
+    modeling {
         createResolvableGraph("serverRuntimePath") {
             usingDependencyBucket("serverRuntime")
             attributes {
