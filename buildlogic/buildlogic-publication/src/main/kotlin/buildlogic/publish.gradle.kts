@@ -13,7 +13,7 @@ java {
 }
 
 val sourcesPath = java.modeling.createResolvableGraph("sourcesPath") {
-    extendsFrom(configurations.implementation)
+    usingDependencyBucket("implementation")
     attributes {
         runtimeUsage()
         documentation("source-folders")

@@ -4,14 +4,10 @@ plugins {
     `java-library`
 }
 
-java {
-    modeling {
-        createResolvableGraph("serverRuntimePath") {
-            usingDependencyBucket("serverRuntime")
-            attributes {
-                runtimeUsage()
-            }
-        }
+val serverRuntimePath = java.modeling.createResolvableGraph("serverRuntimePath") {
+    usingDependencyBucket("serverRuntime")
+    attributes {
+        runtimeUsage()
     }
 }
 
@@ -34,7 +30,7 @@ val end2endTestTask = tasks.register<Test>("end2endTest") {
     testClassesDirs = end2endTest.output.classesDirs
     classpath = configurations[end2endTest.runtimeClasspathConfigurationName] + files(end2endTestTestJarTask)
 
-    jvmArgumentProviders.add(ServerJarArgumentProvider(project.objects, configurations.getByName("serverRuntimePath")))
+    jvmArgumentProviders.add(ServerJarArgumentProvider(project.objects, serverRuntimePath))
 }
 class ServerJarArgumentProvider(objects: ObjectFactory, path: Configuration) : CommandLineArgumentProvider {
     @get:Classpath

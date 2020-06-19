@@ -6,31 +6,23 @@ plugins {
     jacoco
 }
 
-// These are defined in 'packaging.gradle.kts'
-val packaging by configurations.getting
-val packagingPath by configurations.getting
+// This is defined in 'packaging.gradle.kts'
+val packagingPath by configurations.getting // <-- java.modeling.resolvableGraphs.getting ???
 
-java {
-    modeling {
-        createResolvableGraph("sourcesPath") {
-            extendsFrom(packaging)
-            attributes {
-                runtimeUsage()
-                documentation("source-folders")
-            }
-        }
-        createResolvableGraph("coverageDataPath") {
-            extendsFrom(packaging)
-            attributes {
-                runtimeUsage()
-                documentation("jacoco-coverage-data")
-            }
-        }
+val sourcesPath = java.modeling.createResolvableGraph("sourcesPath") {
+    usingDependencyBucket("packaging")
+    attributes {
+        runtimeUsage()
+        documentation("source-folders")
     }
 }
-
-val sourcesPath by configurations.getting
-val coverageDataPath by configurations.getting
+val coverageDataPath = java.modeling.createResolvableGraph("coverageDataPath") {
+    usingDependencyBucket("packaging")
+    attributes {
+        runtimeUsage()
+        documentation("jacoco-coverage-data")
+    }
+}
 
 // Register a code coverage report task to generate the aggregated report
 val codeCoverageReport by tasks.registering(JacocoReport::class) {
