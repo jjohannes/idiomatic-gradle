@@ -1,5 +1,6 @@
 plugins {
     `kotlin-dsl`
+    id("buildlogic.convention.java")
 }
 
 group = "buildlogic"
