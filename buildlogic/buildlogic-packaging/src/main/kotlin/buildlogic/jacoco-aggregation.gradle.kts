@@ -9,14 +9,15 @@ plugins {
 // This is defined in 'packaging.gradle.kts'
 val packagingPath by configurations.getting // <-- java.modeling.resolvableGraphs.getting ???
 
-val sourcesPath = java.modeling.createResolvableGraph("sourcesPath") {
+val sourcesPath = jvm.createResolvableConfiguration("sourcesPath") {
     usingDependencyBucket("packaging")
     attributes {
         runtimeUsage()
         documentation("source-folders")
     }
 }
-val coverageDataPath = java.modeling.createResolvableGraph("coverageDataPath") {
+
+val coverageDataPath = jvm.createResolvableConfiguration("coverageDataPath") {
     usingDependencyBucket("packaging")
     attributes {
         runtimeUsage()

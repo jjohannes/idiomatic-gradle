@@ -11,14 +11,12 @@ tasks.jacocoTestReport.configure {
 }
 
 // Share the coverage data to be aggregated for the whole product
-java {
-    modeling {
-        createOutgoingElements("coverageDataElements") {
-            attributes { documentation("jacoco-coverage-data") }
-            extendsFrom(configurations.implementation)
-            addArtifact(tasks.test.map { task ->
-                task.extensions.getByType<JacocoTaskExtension>().destinationFile!!
-            })
-        }
+jvm {
+    createOutgoingElements("coverageDataElements") {
+        attributes { documentation("jacoco-coverage-data") }
+        extendsFrom(configurations.implementation)
+        addArtifact(tasks.test.map { task ->
+            task.extensions.getByType<JacocoTaskExtension>().destinationFile!!
+        })
     }
 }

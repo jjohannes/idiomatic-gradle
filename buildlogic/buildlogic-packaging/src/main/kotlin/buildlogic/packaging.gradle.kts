@@ -10,7 +10,7 @@ plugins {
     `java-base` // Note: because many things from 'java-library' are not needed (e.g. projects applying this plugin have no src code), we only apply 'java-base'.
 }
 
-val packagingPath = java.modeling.createResolvableGraph("packagingPath") {
+val packagingPath = jvm.createResolvableConfiguration("packagingPath") {
     usingDependencyBucket("packaging")
     requiresJavaLibrariesRuntime()
     attributes {
@@ -58,12 +58,10 @@ abstract class ClassesExtraction : TransformAction<TransformParameters.None> {
 }
 
 // Consumable configuration such that other projects can consume the executable Jar for end2end testing
-java {
-    modeling {
-        createOutgoingElements("runtimeElements") {
-            providesRuntime()
-            addArtifact(executableFatJar)
-        }
+jvm {
+    createOutgoingElements("runtimeElements") {
+        providesRuntime()
+        addArtifact(executableFatJar)
     }
 }
 

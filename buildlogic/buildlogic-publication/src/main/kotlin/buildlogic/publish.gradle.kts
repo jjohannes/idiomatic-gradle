@@ -12,7 +12,7 @@ java {
     withSourcesJar()
 }
 
-val sourcesPath = java.modeling.createResolvableGraph("sourcesPath") {
+val sourcesPath = jvm.createResolvableConfiguration("sourcesPath") {
     usingDependencyBucket("implementation")
     attributes {
         runtimeUsage()

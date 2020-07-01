@@ -4,7 +4,7 @@ plugins {
     `java-library`
 }
 
-val serverRuntimePath = java.modeling.createResolvableGraph("serverRuntimePath") {
+val serverRuntimePath = jvm.createResolvableConfiguration("serverRuntimePath") {
     usingDependencyBucket("serverRuntime")
     attributes {
         runtimeUsage()
@@ -32,6 +32,7 @@ val end2endTestTask = tasks.register<Test>("end2endTest") {
 
     jvmArgumentProviders.add(ServerJarArgumentProvider(project.objects, serverRuntimePath))
 }
+
 class ServerJarArgumentProvider(objects: ObjectFactory, path: Configuration) : CommandLineArgumentProvider {
     @get:Classpath
     val serverJarPath: ConfigurableFileCollection = objects.fileCollection().from(path)
