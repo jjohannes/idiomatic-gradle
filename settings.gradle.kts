@@ -2,11 +2,13 @@ rootProject.name = "idiomatic-gradle"
 
 includeBuild("buildlogic/buildlogic-versioning")
 includeBuild("buildlogic/buildlogic-libraries")
+
+includeBuild("platform")
+
 includeBuild("buildlogic/buildlogic-java-convention")
 includeBuild("buildlogic/buildlogic-packaging")
 includeBuild("buildlogic/buildlogic-publication")
 
-subproject("product", "platform")
 subproject("product/common", "ig-data")
 subproject("product/server", "ig-server")
 subproject("product/api", "ig-api")

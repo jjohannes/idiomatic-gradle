@@ -11,7 +11,7 @@ plugins {
 }
 
 dependencies {
-    findProject(":platform")?.let { implementation(platform(it)) }
+    implementation(platform("com.example.idiomatic.gradle:platform"))
 }
 
 // configure details of java compilation

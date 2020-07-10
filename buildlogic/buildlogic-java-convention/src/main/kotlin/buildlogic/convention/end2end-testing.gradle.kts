@@ -43,7 +43,7 @@ class ServerJarArgumentProvider(objects: ObjectFactory, path: Configuration) : C
 
 // JUnit5 dependencies
 dependencies {
-    findProject(":platform")?.let { "end2endTestImplementation"(platform(it)) }
+    "end2endTestImplementation"(platform("com.example.idiomatic.gradle:platform"))
     "end2endTestImplementation"(libs.junitApi)
     "end2endTestRuntimeOnly"(libs.junitEngine)
 }
