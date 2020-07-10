@@ -4,21 +4,10 @@ plugins {
     `java-library`
 }
 
-// Configuration to define dependencies to and resolve the packged server Jar
-val serverRuntime: Configuration by configurations.creating {
-    isVisible = false
-    isCanBeConsumed = false
-    isCanBeResolved = false
-}
-val serverRuntimePath: Configuration by configurations.creating {
-    isVisible = false
-    isCanBeConsumed = false
-    isCanBeResolved = true
-    extendsFrom(serverRuntime)
-    attributes {
-        attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage.JAVA_RUNTIME))
-        attribute(Category.CATEGORY_ATTRIBUTE, objects.named(Category.LIBRARY))
-        attribute(LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE, objects.named(LibraryElements.JAR))
+val serverRuntimePath = jvm.createResolvableConfiguration("serverRuntimePath") {
+    usingDependencyBucket("serverRuntime")
+    requiresAttributes {
+        runtimeUsage()
     }
 }
 
@@ -43,6 +32,7 @@ val end2endTestTask = tasks.register<Test>("end2endTest") {
 
     jvmArgumentProviders.add(ServerJarArgumentProvider(project.objects, serverRuntimePath))
 }
+
 class ServerJarArgumentProvider(objects: ObjectFactory, path: Configuration) : CommandLineArgumentProvider {
     @get:Classpath
     val serverJarPath: ConfigurableFileCollection = objects.fileCollection().from(path)
