@@ -3,8 +3,6 @@ plugins {
 }
 
 dependencies {
-    api(platform(project(":platform")))
-
     implementation(project(":ig-data"))
 
     implementation(libs.jettyServer)

@@ -13,5 +13,8 @@ dependencies {
         api(libs.guava) {
             version { prefer("29.0-jre") }
         }
+        api(libs.junitApi) {
+            version { prefer("5.6.2") }
+        }
     }
 }

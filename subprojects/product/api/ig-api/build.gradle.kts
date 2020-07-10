@@ -3,14 +3,11 @@ plugins {
 }
 
 dependencies {
-    implementation(platform(project(":platform")))
-
     api(project(":ig-data"))
     implementation(libs.httpclient)
 
     testFixturesImplementation("com.google.guava:guava:29.0-jre")
 
-    end2endTestImplementation(platform(project(":platform")))
     end2endTestImplementation(libs.guava)
     end2endTestCompileOnly(project(":ig-api"))
     end2endTestRuntimeOnly(project(":publish-api"))

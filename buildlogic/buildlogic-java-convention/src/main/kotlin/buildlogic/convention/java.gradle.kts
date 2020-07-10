@@ -10,6 +10,10 @@ plugins {
     id("buildlogic.convention.jacoco")
 }
 
+dependencies {
+    findProject(":platform")?.let { implementation(platform(it)) }
+}
+
 // Share sources folder with other projects for aggregated Javadoc and JaCoCo reports
 jvm {
     createOutgoingElements("transitiveSourcesElements") {

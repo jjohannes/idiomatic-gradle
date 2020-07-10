@@ -2,6 +2,7 @@ package buildlogic.convention
 
 plugins {
     `java-library`
+    id("buildlogic.libraries")
 }
 
 val serverRuntimePath = jvm.createResolvableConfiguration("serverRuntimePath") {
@@ -42,8 +43,9 @@ class ServerJarArgumentProvider(objects: ObjectFactory, path: Configuration) : C
 
 // JUnit5 dependencies
 dependencies {
-    "end2endTestImplementation"("org.junit.jupiter:junit-jupiter-api:5.6.2")
-    "end2endTestRuntimeOnly"("org.junit.jupiter:junit-jupiter-engine")
+    findProject(":platform")?.let { "end2endTestImplementation"(platform(it)) }
+    "end2endTestImplementation"(libs.junitApi)
+    "end2endTestRuntimeOnly"(libs.junitEngine)
 }
 
 // Run end2end tests as part of the 'check' lifecycle phase

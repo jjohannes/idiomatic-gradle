@@ -2,13 +2,15 @@ package buildlogic.convention
 
 plugins {
     `java-library`
+    id("buildlogic.libraries")
 }
 
 // Use JUnit5
 tasks.test.configure {
     useJUnitPlatform()
 }
+
 dependencies {
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.2")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
+    testImplementation(libs.junitApi)
+    testRuntimeOnly(libs.junitEngine)
 }
