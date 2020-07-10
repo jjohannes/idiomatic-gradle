@@ -4,6 +4,7 @@ plugins {
     id("buildlogic.versioning")
     `java-library`
     `java-test-fixtures`
+    id("buildlogic.libraries")
     id("buildlogic.convention.unit-testing")
     id("buildlogic.convention.end2end-testing")
     id("buildlogic.convention.jacoco")

@@ -1,6 +1,7 @@
 rootProject.name = "idiomatic-gradle"
 
 includeBuild("buildlogic/buildlogic-versioning")
+includeBuild("buildlogic/buildlogic-libraries")
 includeBuild("buildlogic/buildlogic-java-convention")
 includeBuild("buildlogic/buildlogic-packaging")
 includeBuild("buildlogic/buildlogic-publication")

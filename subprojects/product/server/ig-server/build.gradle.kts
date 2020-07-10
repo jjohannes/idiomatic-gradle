@@ -7,8 +7,8 @@ dependencies {
 
     implementation(project(":ig-data"))
 
-    implementation(JavaModules.jettyServer)
-    implementation(JavaModules.jettyServlet)
+    implementation(libs.jettyServer)
+    implementation(libs.jettyServlet)
 
-    testImplementation(JavaModules.httpclient)
+    testImplementation(libs.httpclient)
 }

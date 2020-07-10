@@ -6,6 +6,7 @@ group = "buildlogic"
 
 dependencies {
     implementation("buildlogic:versioning")
+    implementation("buildlogic:libraries")
 }
 
 repositories {

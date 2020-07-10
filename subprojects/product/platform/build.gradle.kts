@@ -3,14 +3,14 @@ plugins {
 }
 
 dependencies {
-    api(platform(JavaModules.jettyBom)) {
+    api(platform(libs.jettyBom)) {
         (this as ExternalDependency).version { prefer("9.4.30.v20200611") }
     }
     constraints {
-        api(JavaModules.httpclient) {
+        api(libs.httpclient) {
             version { prefer("4.5.12") }
         }
-        api(JavaModules.guava) {
+        api(libs.guava) {
             version { prefer("29.0-jre") }
         }
     }
