@@ -12,8 +12,10 @@ plugins {
 // Share sources folder with other projects for aggregated Javadoc and JaCoCo reports
 jvm {
     createOutgoingElements("transitiveSourcesElements") {
-        attributes { documentation("source-folders") } // <- this could maybe be outside the attributes block - like 'providesDocumentation(...)' (maybe there is also a better word than 'documentation'?)
+        providesAttributes {
+            documentation("source-folders")
+        }
         extendsFrom(configurations.implementation)
-        sourceSets.main.get().java.srcDirs.forEach(::addArtifact)
+        sourceSets.main.get().java.srcDirs.forEach(::artifact)
     }
 }

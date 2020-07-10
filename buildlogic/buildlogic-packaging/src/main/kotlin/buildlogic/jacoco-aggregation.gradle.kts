@@ -7,20 +7,18 @@ plugins {
 }
 
 // This is defined in 'packaging.gradle.kts'
-val packagingPath by configurations.getting // <-- java.modeling.resolvableGraphs.getting ???
+val packagingPath by configurations.getting
 
 val sourcesPath = jvm.createResolvableConfiguration("sourcesPath") {
     usingDependencyBucket("packaging")
-    attributes {
-        runtimeUsage()
+    requiresAttributes {
         documentation("source-folders")
     }
 }
 
 val coverageDataPath = jvm.createResolvableConfiguration("coverageDataPath") {
     usingDependencyBucket("packaging")
-    attributes {
-        runtimeUsage()
+    requiresAttributes {
         documentation("jacoco-coverage-data")
     }
 }

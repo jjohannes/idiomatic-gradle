@@ -14,8 +14,7 @@ java {
 
 val sourcesPath = jvm.createResolvableConfiguration("sourcesPath") {
     usingDependencyBucket("implementation")
-    attributes {
-        runtimeUsage()
+    requiresAttributes {
         documentation("source-folders")
     }
 }

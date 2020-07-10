@@ -13,7 +13,7 @@ plugins {
 val packagingPath = jvm.createResolvableConfiguration("packagingPath") {
     usingDependencyBucket("packaging")
     requiresJavaLibrariesRuntime()
-    attributes {
+    requiresAttributes {
         library(LibraryElements.CLASSES)
     }
 }
@@ -60,8 +60,7 @@ abstract class ClassesExtraction : TransformAction<TransformParameters.None> {
 // Consumable configuration such that other projects can consume the executable Jar for end2end testing
 jvm {
     createOutgoingElements("runtimeElements") {
-        providesRuntime()
-        addArtifact(executableFatJar)
+        artifact(executableFatJar)
     }
 }
 

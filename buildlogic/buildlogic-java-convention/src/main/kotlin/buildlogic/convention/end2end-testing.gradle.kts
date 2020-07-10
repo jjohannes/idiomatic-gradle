@@ -6,7 +6,7 @@ plugins {
 
 val serverRuntimePath = jvm.createResolvableConfiguration("serverRuntimePath") {
     usingDependencyBucket("serverRuntime")
-    attributes {
+    requiresAttributes {
         runtimeUsage()
     }
 }
