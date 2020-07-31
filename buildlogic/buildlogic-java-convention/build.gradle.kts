@@ -6,7 +6,7 @@ plugins {
 group = "buildlogic"
 
 dependencies {
-    implementation("buildlogic:versioning")
+    implementation(project(":buildlogic-versioning"))
     implementation("buildlogic:libraries")
 
     implementation(platform("com.example.idiomatic.gradle:platform"))
