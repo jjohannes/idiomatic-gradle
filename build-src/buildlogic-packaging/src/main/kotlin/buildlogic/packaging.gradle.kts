@@ -44,7 +44,7 @@ abstract class ClassesExtraction : TransformAction<TransformParameters.None> {
 
     private fun extractJar(input: File, output: File) {
         ZipFile(input).use { jarFile ->
-            jarFile.entries().asIterator().forEach { zipEntry ->
+            jarFile.entries().iterator().forEach { zipEntry ->
                 jarFile.getInputStream(zipEntry).use { file ->
                     if (!zipEntry.isDirectory) {
                         val path = output.toPath().resolve(zipEntry.name)
