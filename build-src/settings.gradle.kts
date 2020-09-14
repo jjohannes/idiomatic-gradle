@@ -1,4 +1,4 @@
-rootProject.name = "publication"
+rootProject.name = "build-src"
 
 include("buildlogic-java-convention")
 include("buildlogic-packaging")

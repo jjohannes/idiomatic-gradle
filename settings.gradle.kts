@@ -1,10 +1,13 @@
 rootProject.name = "idiomatic-gradle"
 
+// Convenience to provide constants for library GA coordinates
 includeBuild("libraries")
 
+// Platform for dependency versions shared by 'main build' and 'build-src'
 includeBuild("platform")
 
-includeBuild("buildlogic")
+// Not traditional 'buildSrc', but 'build-src' as a normal included build
+includeBuild("build-src")
 
 subproject("product/common", "ig-data")
 subproject("product/server", "ig-server")
