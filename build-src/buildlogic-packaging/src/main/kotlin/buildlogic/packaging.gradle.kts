@@ -10,11 +10,24 @@ plugins {
     `java-base` // Note: because many things from 'java-library' are not needed (e.g. projects applying this plugin have no src code), we only apply 'java-base'.
 }
 
-val packagingPath = jvm.createResolvableConfiguration("packagingPath") {
-    usingDependencyBucket("packaging")
-    requiresJavaLibrariesRuntime()
-    requiresAttributes {
-        library(LibraryElements.CLASSES)
+// Configurations to declare dependencies
+val packaging: Configuration by configurations.creating {
+    isVisible = false
+    isCanBeResolved = false
+    isCanBeConsumed = false
+}
+
+// Resolvable configuration to resolve the classes of all dependencies
+val packagingPath: Configuration by configurations.creating {
+    isVisible = false
+    isCanBeResolved = true
+    isCanBeConsumed = false
+    extendsFrom(packaging)
+    attributes {
+        attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage.JAVA_RUNTIME))
+        attribute(Category.CATEGORY_ATTRIBUTE, objects.named(Category.LIBRARY))
+        attribute(LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE, objects.named(LibraryElements.CLASSES))
+        attribute(Bundling.BUNDLING_ATTRIBUTE, objects.named(Bundling.EXTERNAL))
     }
 }
 
@@ -58,9 +71,17 @@ abstract class ClassesExtraction : TransformAction<TransformParameters.None> {
 }
 
 // Consumable configuration such that other projects can consume the executable Jar for end2end testing
-jvm {
-    createOutgoingElements("runtimeElements") {
-        artifact(executableFatJar)
+val runtimeElements: Configuration by configurations.creating {
+    isVisible = false
+    isCanBeResolved = false
+    isCanBeConsumed = true
+    outgoing.artifact(executableFatJar)
+
+    attributes {
+        attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage.JAVA_RUNTIME))
+        attribute(Category.CATEGORY_ATTRIBUTE, objects.named(Category.LIBRARY))
+        attribute(LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE, objects.named(LibraryElements.JAR))
+        attribute(Bundling.BUNDLING_ATTRIBUTE, objects.named(Bundling.EMBEDDED))
     }
 }
 

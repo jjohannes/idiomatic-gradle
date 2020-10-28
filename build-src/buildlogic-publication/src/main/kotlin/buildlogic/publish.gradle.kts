@@ -12,10 +12,15 @@ java {
     withSourcesJar()
 }
 
-val sourcesPath = jvm.createResolvableConfiguration("sourcesPath") {
-    usingDependencyBucket("implementation")
-    requiresAttributes {
-        documentation("source-folders")
+val sourcesPath: Configuration by configurations.creating {
+    isVisible = false
+    isCanBeResolved = true
+    isCanBeConsumed = false
+    extendsFrom(configurations.implementation.get())
+    attributes {
+        attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage.JAVA_RUNTIME))
+        attribute(Category.CATEGORY_ATTRIBUTE, objects.named(Category.DOCUMENTATION))
+        attribute(DocsType.DOCS_TYPE_ATTRIBUTE, objects.named("source-folders"))
     }
 }
 

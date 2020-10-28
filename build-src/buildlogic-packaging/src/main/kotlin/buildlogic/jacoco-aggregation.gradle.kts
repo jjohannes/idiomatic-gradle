@@ -6,20 +6,33 @@ plugins {
     jacoco
 }
 
-// This is defined in 'packaging.gradle.kts'
-val packagingPath by configurations.getting
+// These are defined in 'packaging.gradle.kts'
+val packaging: Configuration by configurations.getting
+val packagingPath: Configuration by configurations.getting
 
-val sourcesPath = jvm.createResolvableConfiguration("sourcesPath") {
-    usingDependencyBucket("packaging")
-    requiresAttributes {
-        documentation("source-folders")
+// A resolvable configuration to collect source code
+val sourcesPath: Configuration by configurations.creating {
+    isVisible = false
+    isCanBeResolved = true
+    isCanBeConsumed = false
+    extendsFrom(packaging)
+    attributes {
+        attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage.JAVA_RUNTIME))
+        attribute(Category.CATEGORY_ATTRIBUTE, objects.named(Category.DOCUMENTATION))
+        attribute(DocsType.DOCS_TYPE_ATTRIBUTE, objects.named("source-folders"))
     }
 }
 
-val coverageDataPath = jvm.createResolvableConfiguration("coverageDataPath") {
-    usingDependencyBucket("packaging")
-    requiresAttributes {
-        documentation("jacoco-coverage-data")
+// A resolvable configuration to collect JaCoCo coverage data
+val coverageDataPath: Configuration by configurations.creating {
+    isVisible = false
+    isCanBeResolved = true
+    isCanBeConsumed = false
+    extendsFrom(packaging)
+    attributes {
+        attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage.JAVA_RUNTIME))
+        attribute(Category.CATEGORY_ATTRIBUTE, objects.named(Category.DOCUMENTATION))
+        attribute(DocsType.DOCS_TYPE_ATTRIBUTE, objects.named("jacoco-coverage-data"))
     }
 }
 
