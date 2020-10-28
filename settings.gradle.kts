@@ -9,14 +9,8 @@ includeBuild("platform")
 // Not traditional 'buildSrc', but 'build-src' as a normal included build
 includeBuild("build-src")
 
-subproject("product/common", "ig-data")
-subproject("product/server", "ig-server")
-subproject("product/api", "ig-api")
+// The actual product. This could be split up into multiple builds, if the product consists of multiple components.
+includeBuild("product")
 
-subproject("aggregation", "publish-api")
-subproject("aggregation", "package-server")
-
-fun subproject(category: String, name: String) {
-    include(name)
-    rootProject.children.first { it.name == name }.projectDir = file("subprojects/$category/$name")
-}
+// Build responsible for assembling the final delivery or producing reports (does not contain production code)
+includeBuild("aggregation")

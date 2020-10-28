@@ -4,5 +4,5 @@ plugins {
 }
 
 dependencies {
-    packaging(project(":ig-server"))
+    packaging("com.example.idiomatic.gradle:ig-server")
 }

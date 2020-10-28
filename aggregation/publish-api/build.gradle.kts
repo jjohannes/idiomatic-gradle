@@ -3,5 +3,5 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":ig-api"))
+    implementation("com.example.idiomatic.gradle:ig-api")
 }
