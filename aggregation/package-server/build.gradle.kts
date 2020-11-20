@@ -1,8 +1,8 @@
 plugins {
-    id("buildlogic.packaging")
-    id("buildlogic.jacoco-aggregation")
+    id("com.example.packaging")
+    id("com.example.jacoco-aggregation")
 }
 
 dependencies {
-    packaging("com.example.idiomatic.gradle:ig-server")
+    packaging("com.example.idiomatic.gradle:server")
 }

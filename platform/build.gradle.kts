@@ -1,6 +1,6 @@
 plugins {
     `java-platform`
-    id("buildlogic.libraries")
+    id("com.example.libraries")
 }
 
 // Allow dependencies for dependencies to other platforms (BOMs)

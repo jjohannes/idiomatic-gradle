@@ -1,6 +1,6 @@
 includeBuild("../libraries")
 includeBuild("../platform")
-includeBuild("../build-src")
+includeBuild("../build-logic")
 
 includeBuild("../product")
 

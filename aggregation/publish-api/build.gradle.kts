@@ -1,7 +1,7 @@
 plugins {
-    id("buildlogic.publish")
+    id("com.example.publish")
 }
 
 dependencies {
-    implementation("com.example.idiomatic.gradle:ig-api")
+    implementation("com.example.idiomatic.gradle:api")
 }
