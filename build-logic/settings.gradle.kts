@@ -8,6 +8,7 @@ dependencyResolutionManagement {
 }
 
 include("java-convention")
+include("lifecycle")
 include("packaging")
 include("publication")
 include("versioning")

@@ -4,7 +4,13 @@
 
 **There is now [documentation](https://docs.gradle.org/release-nightly/userguide/structuring_software_products.html) and another [sample](https://docs.gradle.org/release-nightly/samples/sample_structuring_software_projects.html) on this topic in the Gradle User Manual.**
 
-This example is a software product called _Idiomatic Gradle (IG)_ which consists of:
+This example is a software product called _Idiomatic Gradle (IG)_.
+
+To build the example, clone this repository and run the following for more information:
+- `./gradlew :tasks`
+- `./gradlew :projects`
+
+This example consists of:
 
 ### Production code
 
