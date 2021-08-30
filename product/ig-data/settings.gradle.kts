@@ -1,14 +1,9 @@
 pluginManagement {
-    includeBuild("../../libraries")
-    includeBuild("../../build-logic")
+    includeBuild("../../repositories")
 }
 
-dependencyResolutionManagement {
-    repositories.mavenCentral()
-    includeBuild("../../platform")
-
-    // For end2end testing
-    includeBuild("../../aggregation")
+plugins {
+    id("com.example.repositories")
 }
 
 include("data")
