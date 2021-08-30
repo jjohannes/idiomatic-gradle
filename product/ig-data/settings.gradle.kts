@@ -3,7 +3,6 @@ pluginManagement {
     includeBuild("../../build-logic")
 }
 
-
 dependencyResolutionManagement {
     repositories.mavenCentral()
     includeBuild("../../platform")
