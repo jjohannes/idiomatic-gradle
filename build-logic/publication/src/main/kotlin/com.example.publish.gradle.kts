@@ -58,6 +58,11 @@ publishing {
     publications {
         create<MavenPublication>("api") {
             from(components["java"])
+            versionMapping {
+                allVariants {
+                    fromResolutionResult()
+                }
+            }
         }
     }
 }
