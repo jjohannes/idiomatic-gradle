@@ -1,10 +1,10 @@
 plugins {
     id("java-library")
-    jacoco
+    id("jacoco")
 }
 
 // Do not generate reports for individual projects
-tasks.jacocoTestReport.configure {
+tasks.jacocoTestReport {
     enabled = false
 }
 

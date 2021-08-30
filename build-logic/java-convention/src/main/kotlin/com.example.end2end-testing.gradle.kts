@@ -57,6 +57,6 @@ dependencies {
 }
 
 // Run end2end tests as part of the 'check' lifecycle phase
-tasks.check.configure {
+tasks.check {
     dependsOn(end2endTestTask)
 }

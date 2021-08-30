@@ -3,7 +3,3 @@ plugins {
 }
 
 group = "com.example.buildlogic"
-
-repositories {
-    mavenCentral()
-}

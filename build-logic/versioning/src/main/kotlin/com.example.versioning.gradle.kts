@@ -1,7 +1,3 @@
-repositories {
-    mavenCentral()
-}
-
 // A common group for all projects
 group = "com.example.idiomatic.gradle"
 // The version is read from the 'version.txt' file in the root folder

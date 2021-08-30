@@ -3,9 +3,8 @@ plugins {
     id("com.example.libraries")
 }
 
-// Use JUnit5
-tasks.test.configure {
-    useJUnitPlatform()
+tasks.test {
+    useJUnitPlatform() // Use JUnit5
 }
 
 dependencies {

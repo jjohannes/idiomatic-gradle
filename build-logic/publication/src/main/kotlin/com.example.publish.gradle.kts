@@ -2,7 +2,7 @@
 plugins {
     id("com.example.versioning")
     id("java-library")
-    `maven-publish`
+    id("maven-publish")
 }
 
 java {
@@ -23,21 +23,19 @@ val sourcesPath: Configuration by configurations.creating {
 }
 
 // Configure the 'jar', 'javadoc' and 'sourcesJar' tasks to use the classes/sources of all dependencies as input
-tasks {
-    jar.configure {
-        from(configurations.runtimeClasspath.get().incoming.artifactView {
-            attributes.attribute(LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE, objects.named(LibraryElements.CLASSES))
-        }.files.filter { it.isDirectory })
-    }
-    javadoc.configure {
-        classpath = configurations.runtimeClasspath.get()
-        // Be lenient as third party dependencies to not offer their source code in a folder (and we do now want to include these in our Javadoc)
-        source(sourcesPath.incoming.artifactView { lenient(true) }.files)
-    }
-    named<Jar>("sourcesJar").configure {
-        // Be lenient as third party dependencies to not offer their source code in a folder (and we do not want to package it)
-        from(sourcesPath.incoming.artifactView { lenient(true) }.files)
-    }
+tasks.jar {
+    from(configurations.runtimeClasspath.get().incoming.artifactView {
+        attributes.attribute(LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE, objects.named(LibraryElements.CLASSES))
+    }.files.filter { it.isDirectory })
+}
+tasks.javadoc {
+    classpath = configurations.runtimeClasspath.get()
+    // Be lenient as third party dependencies to not offer their source code in a folder (and we do now want to include these in our Javadoc)
+    source(sourcesPath.incoming.artifactView { lenient(true) }.files)
+}
+tasks.named<Jar>("sourcesJar") {
+    // Be lenient as third party dependencies to not offer their source code in a folder (and we do not want to package it)
+    from(sourcesPath.incoming.artifactView { lenient(true) }.files)
 }
 
 publishing {

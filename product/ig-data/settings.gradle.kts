@@ -1,8 +1,15 @@
-includeBuild("../../libraries")
-includeBuild("../../platform")
-includeBuild("../../build-logic")
+pluginManagement {
+    includeBuild("../../libraries")
+    includeBuild("../../build-logic")
+}
 
-// For end2end testing
-includeBuild("../../aggregation")
+
+dependencyResolutionManagement {
+    repositories.mavenCentral()
+    includeBuild("../../platform")
+
+    // For end2end testing
+    includeBuild("../../aggregation")
+}
 
 include("data")

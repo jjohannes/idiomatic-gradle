@@ -84,6 +84,6 @@ val runtimeElements: Configuration by configurations.creating {
 }
 
 // Make building the executable jar part of the 'assemble' lifecycle phase
-tasks.assemble.configure {
+tasks.assemble {
     dependsOn(executableFatJar)
 }

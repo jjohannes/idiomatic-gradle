@@ -7,7 +7,3 @@ group = "com.example.buildlogic"
 dependencies {
     implementation(project(":versioning"))
 }
-
-repositories {
-    mavenCentral()
-}

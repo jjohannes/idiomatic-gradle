@@ -1,8 +1,15 @@
-includeBuild("../libraries")
-includeBuild("../platform")
-includeBuild("../build-logic")
+pluginManagement {
+    includeBuild("../libraries")
+    includeBuild("../build-logic")
+}
 
-includeBuild("../product/ig-server")
+dependencyResolutionManagement {
+    repositories.mavenCentral()
 
-include("publish-api")
-include("package-server")
+    includeBuild("../platform")
+
+    includeBuild("../product/ig-server")
+
+    include("publish-api")
+    include("package-server")
+}

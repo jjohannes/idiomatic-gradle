@@ -1,4 +1,4 @@
-# Example of how to idiomatically structure a large build with Gradle 6.8+
+# Example of how to idiomatically structure a large build with Gradle 7.2+
 
 ## Example
 
