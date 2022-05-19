@@ -2,6 +2,8 @@
 
 For a better understanding of the concepts used in this example, check out [Understanding Gradle](https://github.com/jjohannes/understanding-gradle#readme).
 
+In addition to this, check [How to set up a larger Gradle project](https://github.com/jjohannes/gradle-project-setup-howto).
+
 ## Example
 
 **There is now [documentation](https://docs.gradle.org/release-nightly/userguide/structuring_software_products.html) and another [sample](https://docs.gradle.org/release-nightly/samples/sample_structuring_software_projects.html) on this topic in the Gradle User Manual.**
