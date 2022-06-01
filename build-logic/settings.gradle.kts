@@ -3,6 +3,8 @@ pluginManagement {
 }
 dependencyResolutionManagement {
     repositories.mavenCentral()
+    includeBuild("../libraries")
+    includeBuild("../platform")
 }
 
 include("java-convention")
