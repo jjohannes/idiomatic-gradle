@@ -5,8 +5,8 @@ plugins {
 dependencies {
     implementation("com.example.idiomatic.gradle:data")
 
-    implementation(libs.jettyServer)
-    implementation(libs.jettyServlet)
+    implementation(libs.jetty.server)
+    implementation(libs.jetty.servlet)
 
     testImplementation(libs.httpclient)
 }

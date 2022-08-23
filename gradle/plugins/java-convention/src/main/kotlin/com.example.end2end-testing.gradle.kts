@@ -1,6 +1,5 @@
 plugins {
     id("java-library")
-    id("com.example.libraries")
 }
 
 val serverRuntime: Configuration by configurations.creating {
@@ -50,10 +49,11 @@ class ServerJarArgumentProvider(objects: ObjectFactory, path: Configuration) : C
 }
 
 // JUnit5 dependencies
+val libs = the<VersionCatalogsExtension>().named("libs")
 dependencies {
     "end2endTestImplementation"(platform("com.example.idiomatic.gradle:platform"))
-    "end2endTestImplementation"(libs.junitApi)
-    "end2endTestRuntimeOnly"(libs.junitEngine)
+    "end2endTestImplementation"(libs.findLibrary("junit.api").get())
+    "end2endTestRuntimeOnly"(libs.findLibrary("junit.engine").get())
 }
 
 // Run end2end tests as part of the 'check' lifecycle phase

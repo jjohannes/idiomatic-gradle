@@ -1,3 +1,5 @@
-pluginManagement {
-    includeBuild("../libraries")
+dependencyResolutionManagement {
+    versionCatalogs.create("libs") {
+        from(files("../libs.versions.toml"))
+    }
 }

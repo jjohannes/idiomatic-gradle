@@ -1,10 +1,10 @@
-pluginManagement {
-    includeBuild("../libraries")
-}
 dependencyResolutionManagement {
     repositories.mavenCentral()
-    includeBuild("../libraries")
     includeBuild("../platform")
+
+    versionCatalogs.create("libs") {
+        from(files("../libs.versions.toml"))
+    }
 }
 
 include("java-convention")

@@ -1,5 +1,4 @@
 pluginManagement {
-    includeBuild("../gradle/libraries")
     includeBuild("../gradle/plugins")
 }
 

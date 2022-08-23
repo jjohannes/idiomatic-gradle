@@ -1,13 +1,13 @@
 plugins {
     id("java-library")
-    id("com.example.libraries")
 }
 
 tasks.test {
     useJUnitPlatform() // Use JUnit5
 }
 
+val libs = the<VersionCatalogsExtension>().named("libs")
 dependencies {
-    testImplementation(libs.junitApi)
-    testRuntimeOnly(libs.junitEngine)
+    testImplementation(libs.findLibrary("junit.api").get())
+    testRuntimeOnly(libs.findLibrary("junit.engine").get())
 }
