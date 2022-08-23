@@ -53,3 +53,10 @@ With this, the following outdated practices are avoided:
 - No cross-project configuration (_subproject_ / _allprojects_) is performed
 - Each build script of a subproject is simpler to read as all relationships to other projects are expressed in terms of dependencies
 - ...
+
+## Summer 2022 Update (Gradle 7.5.1)
+
+- Moved all Gradle details into `gradle` folder. `build-logic` is now `gradle/plugins` following the Gradle recommendations - see [gradle/gradle#21192](https://github.com/gradle/gradle/pull/21192).
+- Alternative setups using Gradle's new [Version Catalog](https://docs.gradle.org/current/userguide/platforms.html#sub:version-catalog) concept (see [#4](https://github.com/jjohannes/idiomatic-gradle/issues/4)). 
+  - [Use Catalog for Aliases (keep Platform)](https://github.com/jjohannes/idiomatic-gradle/commit/version_catalog_with_platform) - Replace the `ExternalLibrariesExtension` for aliases with a catalog - `libs.versions.toml` - shared by all builds/components.
+  - [Use only the Catalog (remove Platform)](https://github.com/jjohannes/idiomatic-gradle/commit/version_catalog_without_platform) - Remove the `gradle/platform` project and put the versions directly into the catalog instead.
