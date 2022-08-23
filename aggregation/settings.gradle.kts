@@ -5,8 +5,6 @@ pluginManagement {
 dependencyResolutionManagement {
     repositories.mavenCentral()
 
-    includeBuild("../gradle/platform")
-
     includeBuild("../product/ig-server")
 
     include("publish-api")

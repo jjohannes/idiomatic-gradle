@@ -7,10 +7,6 @@ plugins {
     id("com.example.jacoco")
 }
 
-dependencies {
-    implementation(platform("com.example.idiomatic.gradle:platform"))
-}
-
 // configure details of java compilation
 tasks.withType<JavaCompile>().configureEach {
     options.headerOutputDirectory.convention(null as Directory?) // currently, need to clear convention to remove
