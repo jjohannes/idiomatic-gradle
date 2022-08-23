@@ -1,12 +1,12 @@
 pluginManagement {
-    includeBuild("../libraries")
-    includeBuild("../build-logic")
+    includeBuild("../gradle/libraries")
+    includeBuild("../gradle/plugins")
 }
 
 dependencyResolutionManagement {
     repositories.mavenCentral()
 
-    includeBuild("../platform")
+    includeBuild("../gradle/platform")
 
     includeBuild("../product/ig-server")
 

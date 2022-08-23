@@ -1,4 +1,5 @@
 // A plugin building on top of 'buildlogic.packaging' to aggregate a JaCoCo report for the tests of all things included in the executable Jar
+// NOTE: Since Gradle 7.4, you may use the 'jacoco-report-aggregation' plugin instead of this custom setup.
 plugins {
     id("com.example.packaging")
     id("jacoco")
