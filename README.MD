@@ -1,12 +1,10 @@
 # Example of how to idiomatically structure a large build with Gradle 7.2+
 
-For a better understanding of the concepts used in this example, check out [Understanding Gradle](https://github.com/jjohannes/understanding-gradle#readme).
-
-In addition to this, check [How to set up a larger Gradle project](https://github.com/jjohannes/gradle-project-setup-howto).
+- For a better understanding of the concepts used in this example, check out [Understanding Gradle](https://github.com/jjohannes/understanding-gradle#readme).
+- In addition to this, check [How to set up a larger Gradle project](https://github.com/jjohannes/gradle-project-setup-howto).
+- here is [documentation](https://docs.gradle.org/release-nightly/userguide/structuring_software_products.html) and another [sample](https://docs.gradle.org/release-nightly/samples/sample_structuring_software_projects.html) on this topic in the Gradle User Manual.
 
 ## Example
-
-**There is now [documentation](https://docs.gradle.org/release-nightly/userguide/structuring_software_products.html) and another [sample](https://docs.gradle.org/release-nightly/samples/sample_structuring_software_projects.html) on this topic in the Gradle User Manual.**
 
 This example is a software product called _Idiomatic Gradle (IG)_.
 
@@ -24,7 +22,7 @@ Inside the 'product' folder, there are three components/builds:
 - `product/ig-api`: A client API Jar that clients (e.g. Android Apps) can integrate directly
 - `product/ig-common`: Some common code used by both Server and API Jar
 
-For the sake of the sample each of these folders only contain one subproject. 
+For the sake of the sample each of these folders only contain one subproject.
 In a real-world application, this can be structured into many, many more Gradle subprojects.
 
 ### Packaging and Publishing
@@ -38,7 +36,7 @@ Hence, this is configured in a separate component/build only responsible for agg
 
 Each project contains unit tests using Gradle's default setup for Java projects with the `src/test/java` folder.
 Furthermore, some projects contain end2end tests testing with the real (packaged) server and the real client API Jar.
-For this, the packaging/publishing projects _provide_ their results in the build for other subprojects to consume. 
+For this, the packaging/publishing projects _provide_ their results in the build for other subprojects to consume.
 
 ## Idiomatic Build Logic Structure
 
@@ -54,9 +52,23 @@ With this, the following outdated practices are avoided:
 - Each build script of a subproject is simpler to read as all relationships to other projects are expressed in terms of dependencies
 - ...
 
+## Discussions and alternative structuring options
+
+- [Using a Version Catalog](https://github.com/jjohannes/idiomatic-gradle/issues/4)
+- [Name of 'Settings Plugin' project](https://github.com/jjohannes/idiomatic-gradle/issues/8)
+- [Using JVM packages for precompiled script plugins](https://github.com/jjohannes/idiomatic-gradle/issues/9)
+
+More questions or points you would like to discuss? Please [open an issue](https://github.com/jjohannes/idiomatic-gradle/issues/new).
+
+## FAQ
+
+- [Android Studio: 'gradle/plugins' project clean uses different Gradle version](https://github.com/jjohannes/idiomatic-gradle/issues/5)
+
+More questions or points you would like to discuss? Please [open an issue](https://github.com/jjohannes/idiomatic-gradle/issues/new).
+
 ## Summer 2022 Update (Gradle 7.5.1)
 
 - Moved all Gradle details into `gradle` folder. `build-logic` is now `gradle/plugins` following the Gradle recommendations - see [gradle/gradle#21192](https://github.com/gradle/gradle/pull/21192).
-- Alternative setups using Gradle's new [Version Catalog](https://docs.gradle.org/current/userguide/platforms.html#sub:version-catalog) concept (see [#4](https://github.com/jjohannes/idiomatic-gradle/issues/4)). 
+- Alternative setups using Gradle's new [Version Catalog](https://docs.gradle.org/current/userguide/platforms.html#sub:version-catalog) concept (see [#4](https://github.com/jjohannes/idiomatic-gradle/issues/4)).
   - [Use Catalog for Aliases (keep Platform)](https://github.com/jjohannes/idiomatic-gradle/commit/version_catalog_with_platform) - Replace the `ExternalLibrariesExtension` for aliases with a catalog - `libs.versions.toml` - shared by all builds/components.
   - [Use only the Catalog (remove Platform)](https://github.com/jjohannes/idiomatic-gradle/commit/version_catalog_without_platform) - Remove the `gradle/platform` project and put the versions directly into the catalog instead.
