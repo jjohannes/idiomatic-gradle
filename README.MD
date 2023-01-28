@@ -52,9 +52,15 @@ With this, the following outdated practices are avoided:
 - Each build script of a subproject is simpler to read as all relationships to other projects are expressed in terms of dependencies
 - ...
 
+## Alternative structuring options (on branches)
+
+- Alternative setups to use or not use Gradle's [Version Catalog](https://docs.gradle.org/current/userguide/platforms.html#sub:version-catalog) concept (see [#4](https://github.com/jjohannes/idiomatic-gradle/issues/4)).
+    - [Do not use the Catalog](https://github.com/jjohannes/idiomatic-gradle/commit/no_version_catalog) - Removes the `libs.versions.toml` catalog and instead uses GA coordinates directly (versions are managed in platform project)
+    - [Use only the Catalog (remove Platform)](https://github.com/jjohannes/idiomatic-gradle/commit/version_catalog_without_platform) - Remove the `gradle/platform` project and put the versions directly into the catalog instead.
+
 ## Discussions and alternative structuring options
 
-- [Using a Version Catalog](https://github.com/jjohannes/idiomatic-gradle/issues/4)
+- [Using or not using a Version Catalog](https://github.com/jjohannes/idiomatic-gradle/issues/4)
 - [Name of 'Settings Plugin' project](https://github.com/jjohannes/idiomatic-gradle/issues/8)
 - [Using JVM packages for precompiled script plugins](https://github.com/jjohannes/idiomatic-gradle/issues/9)
 
@@ -65,10 +71,3 @@ More questions or points you would like to discuss? Please [open an issue](https
 - [Android Studio: 'gradle/plugins' project clean uses different Gradle version](https://github.com/jjohannes/idiomatic-gradle/issues/5)
 
 More questions or points you would like to discuss? Please [open an issue](https://github.com/jjohannes/idiomatic-gradle/issues/new).
-
-## Summer 2022 Update (Gradle 7.5.1)
-
-- Moved all Gradle details into `gradle` folder. `build-logic` is now `gradle/plugins` following the Gradle recommendations - see [gradle/gradle#21192](https://github.com/gradle/gradle/pull/21192).
-- Alternative setups using Gradle's new [Version Catalog](https://docs.gradle.org/current/userguide/platforms.html#sub:version-catalog) concept (see [#4](https://github.com/jjohannes/idiomatic-gradle/issues/4)).
-  - [Use Catalog for Aliases (keep Platform)](https://github.com/jjohannes/idiomatic-gradle/commit/version_catalog_with_platform) - Replace the `ExternalLibrariesExtension` for aliases with a catalog - `libs.versions.toml` - shared by all builds/components.
-  - [Use only the Catalog (remove Platform)](https://github.com/jjohannes/idiomatic-gradle/commit/version_catalog_without_platform) - Remove the `gradle/platform` project and put the versions directly into the catalog instead.
