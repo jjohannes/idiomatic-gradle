@@ -8,5 +8,5 @@ dependencies {
     implementation(project(":versioning"))
 
     implementation(platform("com.example.idiomatic.gradle:platform"))
-    implementation(libs.guava)
+    implementation("com.google.guava:guava")
 }

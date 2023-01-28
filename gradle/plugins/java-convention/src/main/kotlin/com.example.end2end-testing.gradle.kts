@@ -49,11 +49,10 @@ class ServerJarArgumentProvider(objects: ObjectFactory, path: Configuration) : C
 }
 
 // JUnit5 dependencies
-val libs = the<VersionCatalogsExtension>().named("libs")
 dependencies {
     "end2endTestImplementation"(platform("com.example.idiomatic.gradle:platform"))
-    "end2endTestImplementation"(libs.findLibrary("junit.api").get())
-    "end2endTestRuntimeOnly"(libs.findLibrary("junit.engine").get())
+    "end2endTestImplementation"("org.junit.jupiter:junit-jupiter-api")
+    "end2endTestRuntimeOnly"("org.junit.jupiter:junit-jupiter-engine")
 }
 
 // Run end2end tests as part of the 'check' lifecycle phase

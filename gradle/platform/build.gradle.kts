@@ -8,18 +8,11 @@ javaPlatform.allowDependencies()
 group = "com.example.idiomatic.gradle"
 
 dependencies {
-    api(platform(libs.jetty.bom)) {
-        (this as ExternalDependency).version { prefer("9.4.30.v20200611") }
-    }
+    api(platform("org.eclipse.jetty:jetty-bom:9.4.30.v20200611"))
+
     constraints {
-        api(libs.httpclient) {
-            version { prefer("4.5.12") }
-        }
-        api(libs.guava) {
-            version { prefer("29.0-jre") }
-        }
-        api(libs.junit.api) {
-            version { prefer("5.6.2") }
-        }
+        api("org.apache.httpcomponents:httpclient:4.5.12")
+        api("com.google.guava:guava:29.0-jre")
+        api("org.junit.jupiter:junit-jupiter-api:5.6.2")
     }
 }
