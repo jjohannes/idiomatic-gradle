@@ -9,3 +9,5 @@ dependencyResolutionManagement {
     // Build responsible for assembling the final delivery or producing reports (does not contain production code)
     includeBuild("aggregation")
 }
+
+enableFeaturePreview("STABLE_CONFIGURATION_CACHE")
