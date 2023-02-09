@@ -9,3 +9,6 @@ httpclient = { module = "org.apache.httpcomponents:httpclient" }
 
 junit-api = { module = "org.junit.jupiter:junit-jupiter-api" }
 junit-engine = { module = "org.junit.jupiter:junit-jupiter-engine" }
+
+# Gradle plugin dependencies
+gradlex-java-ecosystem-capabilities = { module = "org.gradlex:java-ecosystem-capabilities"}

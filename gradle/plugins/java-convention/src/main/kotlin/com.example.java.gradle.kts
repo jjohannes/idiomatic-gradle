@@ -5,6 +5,7 @@ plugins {
     id("com.example.unit-testing")
     id("com.example.end2end-testing")
     id("com.example.jacoco")
+    id("org.gradlex.java-ecosystem-capabilities")
 }
 
 dependencies {
