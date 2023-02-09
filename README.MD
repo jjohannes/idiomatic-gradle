@@ -61,6 +61,7 @@ With this, the following outdated practices are avoided:
 ## Discussions and alternative structuring options
 
 - [Using or not using a Version Catalog](https://github.com/jjohannes/idiomatic-gradle/issues/4)
+- [How to use an external plugin in a local plugin and where to put its version](https://github.com/jjohannes/idiomatic-gradle/issues/14)
 - [Name of 'Settings Plugin' project](https://github.com/jjohannes/idiomatic-gradle/issues/8)
 - [Using JVM packages for precompiled script plugins](https://github.com/jjohannes/idiomatic-gradle/issues/9)
 
