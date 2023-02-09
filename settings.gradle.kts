@@ -10,4 +10,5 @@ dependencyResolutionManagement {
     includeBuild("aggregation")
 }
 
-enableFeaturePreview("STABLE_CONFIGURATION_CACHE")
+// Turned off by default for now - still causes deprecations in Gradle 8.0 when used with `kotlin-dsl`
+// enableFeaturePreview("STABLE_CONFIGURATION_CACHE")
