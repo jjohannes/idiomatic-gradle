@@ -4,7 +4,7 @@ dependencyResolutionManagement {
     includeBuild("../platform")
 
     versionCatalogs.create("libs") {
-        from(files("../libs.versions.toml"))
+        from("com.example.idiomatic.gradle:catalog")
     }
 }
 
