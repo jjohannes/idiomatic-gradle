@@ -64,6 +64,7 @@ With this, the following outdated practices are avoided:
 - [How to use an external plugin in a local plugin and where to put its version](https://github.com/jjohannes/idiomatic-gradle/issues/14)
 - [Name of 'Settings Plugin' project](https://github.com/jjohannes/idiomatic-gradle/issues/8)
 - [Using JVM packages for precompiled script plugins](https://github.com/jjohannes/idiomatic-gradle/issues/9)
+- [Where to put the Gradle Wrapper](https://github.com/jjohannes/idiomatic-gradle/issues/12)
 
 More questions or points you would like to discuss? Please [open an issue](https://github.com/jjohannes/idiomatic-gradle/issues/new).
 
