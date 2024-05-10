@@ -9,6 +9,3 @@ dependencyResolutionManagement {
     // Build responsible for assembling the final delivery or producing reports (does not contain production code)
     includeBuild("aggregation")
 }
-
-// Turned off by default for now - still causes deprecations in Gradle 8.0 when used with `kotlin-dsl`
-// enableFeaturePreview("STABLE_CONFIGURATION_CACHE")
