@@ -21,8 +21,8 @@ dependencies {
         api(libs.junit.api) {
             version { prefer("5.6.2") }
         }
-        api(libs.gradlex.java.ecosystem.capabilities) {
-            version { prefer("1.1") }
+        api(libs.gradlex.jvm.dependency.conflict.resolution) {
+            version { prefer("2.1.1") }
         }
     }
 }

@@ -12,4 +12,4 @@ junit-engine = { module = "org.junit.jupiter:junit-jupiter-engine" }
 junit-launcher = { module = "org.junit.platform:junit-platform-launcher" }
 
 # Gradle plugin dependencies
-gradlex-java-ecosystem-capabilities = { module = "org.gradlex:java-ecosystem-capabilities"}
+gradlex-jvm-dependency-conflict-resolution = { module = "org.gradlex:jvm-dependency-conflict-resolution"}
