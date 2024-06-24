@@ -1,8 +1,20 @@
 # Example of how to idiomatically structure a large build with Gradle 7.2+
 
-- For a better understanding of the concepts used in this example, check out [Understanding Gradle](https://github.com/jjohannes/understanding-gradle#readme).
-- In addition to this, check [How to set up a larger Gradle project](https://github.com/jjohannes/gradle-project-setup-howto).
-- here is [documentation](https://docs.gradle.org/release-nightly/userguide/structuring_software_products.html) and another [sample](https://docs.gradle.org/release-nightly/samples/sample_structuring_software_projects.html) on this topic in the Gradle User Manual.
+> [!IMPORTANT]
+> This project shows how to use Gradle in a structured way not only for simple, but also rather complex project setups.
+> In this context, it is rather "academic" and contains quite some "Gradle boilerplate".
+> If you want to understand Gradle on a deeper level, it is a great resource.
+> And if you are looking for more explanation on the different features used here, you can finde that in my
+> 👉 [**Understanding Gradle**](https://github.com/jjohannes/understanding-gradle#readme) video series.
+>
+> If you are looking for a (more or less) standard setup for a project, I would recommend looking at my other repository
+> 👉 [**Gradle Project Setup HowTo**](https://github.com/jjohannes/gradle-project-setup-howto) first or instead.
+
+There is also
+[documentation](https://docs.gradle.org/release-nightly/userguide/structuring_software_products.html)
+and another
+[sample](https://docs.gradle.org/release-nightly/samples/sample_structuring_software_projects.html)
+on this topic in the Gradle User Manual.
 
 ## Example
 
