@@ -37,6 +37,22 @@ Inside the 'product' folder, there are three components/builds:
 For the sake of the sample each of these folders only contain one subproject.
 In a real-world application, this can be structured into many, many more Gradle subprojects.
 
+All projects and modules should be organized as independent, first-class entities eventually 
+under a shared domain directory. Shared code should live in a clearly defined common module, 
+rather than mixing sources and sub-modules. Doing otherwise is considered an anti-pattern.
+
+> [!WARNING]
+> This project structure for example is an anti-pattern.
+> 
+> ```
+> product/
+> ├── src/... // common code
+> ├── ig-server
+> │   └── src
+> └── ig-api
+>     └── src
+> ```
+
 ### Packaging and Publishing
 
 Both the server and the client API Jar require some special packaging to be published/distributed.
