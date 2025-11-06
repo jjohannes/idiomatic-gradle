@@ -1,4 +1,4 @@
-# Example of how to idiomatically structure a large build with Gradle 7.2+
+# How to idiomatically structure a large Gradle build
 
 > [!IMPORTANT]
 > This project shows how to use Gradle in a structured way not only for simple, but also rather complex project setups.
