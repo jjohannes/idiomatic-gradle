@@ -1,3 +1,0 @@
-dependencyResolutionManagement {
-    repositories.mavenCentral()
-}

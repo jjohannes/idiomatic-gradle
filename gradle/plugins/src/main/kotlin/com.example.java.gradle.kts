@@ -1,7 +1,7 @@
 plugins {
-    id("com.example.versioning")
     id("java-library")
     id("java-test-fixtures")
+    id("com.example.versioning")
     id("com.example.unit-testing")
     id("com.example.end2end-testing")
     id("com.example.jacoco")

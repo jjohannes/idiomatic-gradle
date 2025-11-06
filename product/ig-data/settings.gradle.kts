@@ -1,5 +1,5 @@
 pluginManagement {
-    includeBuild("../../gradle/settings")
+    includeBuild("../../gradle/plugins")
 }
 
 plugins {

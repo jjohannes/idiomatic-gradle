@@ -8,21 +8,17 @@ javaPlatform.allowDependencies()
 group = "com.example.idiomatic.gradle"
 
 dependencies {
-    api(platform(libs.jetty.bom)) {
-        (this as ExternalDependency).version { prefer("9.4.30.v20200611") }
-    }
-    constraints {
-        api(libs.httpclient) {
-            version { prefer("4.5.12") }
-        }
-        api(libs.guava) {
-            version { prefer("29.0-jre") }
-        }
-        api(libs.junit.api) {
-            version { prefer("5.6.2") }
-        }
-        api(libs.gradlex.jvm.dependency.conflict.resolution) {
-            version { prefer("2.1.1") }
+    api(platform(libs.jetty.bom))
+}
+
+// Allow upgrading (transitive) versions via catalog by adding constraints
+dependencies.constraints {
+    val libs = versionCatalogs.named("libs")
+    val catalogEntries = libs.libraryAliases.map { libs.findLibrary(it).get().get() }
+    catalogEntries.forEach { entry ->
+        val version = entry.version
+        if (version != null) {
+            api(entry) { version { require(version) } }
         }
     }
 }

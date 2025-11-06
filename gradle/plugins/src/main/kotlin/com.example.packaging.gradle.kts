@@ -14,6 +14,10 @@ val packaging: Configuration by configurations.creating {
     isCanBeConsumed = false
 }
 
+dependencies {
+    packaging(platform("com.example.idiomatic.gradle:platform"))
+}
+
 // Resolvable configuration to resolve the classes of all dependencies
 val packagingPath: Configuration by configurations.creating {
     isCanBeResolved = true
