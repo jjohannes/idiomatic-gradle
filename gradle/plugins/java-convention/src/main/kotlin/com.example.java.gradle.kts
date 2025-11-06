@@ -19,7 +19,6 @@ tasks.withType<JavaCompile>().configureEach {
 
 // Share sources folder with other projects for aggregated Javadoc and JaCoCo reports
 configurations.create("transitiveSourcesElements") {
-    isVisible = false
     isCanBeResolved = false
     isCanBeConsumed = true
     extendsFrom(configurations.implementation.get())

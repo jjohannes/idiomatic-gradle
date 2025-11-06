@@ -11,7 +11,6 @@ java {
 }
 
 val sourcesPath: Configuration by configurations.creating {
-    isVisible = false
     isCanBeResolved = true
     isCanBeConsumed = false
     extendsFrom(configurations.implementation.get())

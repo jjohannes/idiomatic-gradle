@@ -3,12 +3,10 @@ plugins {
 }
 
 val serverRuntime: Configuration by configurations.creating {
-    isVisible = false
     isCanBeConsumed = false
     isCanBeResolved = false
 }
 val serverRuntimePath: Configuration by configurations.creating {
-    isVisible = false
     isCanBeConsumed = false
     isCanBeResolved = true
     extendsFrom(serverRuntime)

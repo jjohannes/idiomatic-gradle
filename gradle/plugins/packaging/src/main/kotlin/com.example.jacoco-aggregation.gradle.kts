@@ -11,7 +11,6 @@ val packagingPath: Configuration by configurations.getting
 
 // A resolvable configuration to collect source code
 val sourcesPath: Configuration by configurations.creating {
-    isVisible = false
     isCanBeResolved = true
     isCanBeConsumed = false
     extendsFrom(packaging)
@@ -24,7 +23,6 @@ val sourcesPath: Configuration by configurations.creating {
 
 // A resolvable configuration to collect JaCoCo coverage data
 val coverageDataPath: Configuration by configurations.creating {
-    isVisible = false
     isCanBeResolved = true
     isCanBeConsumed = false
     extendsFrom(packaging)

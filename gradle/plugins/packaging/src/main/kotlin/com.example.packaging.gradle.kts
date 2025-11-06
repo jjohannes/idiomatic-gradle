@@ -10,14 +10,12 @@ plugins {
 
 // Configurations to declare dependencies
 val packaging: Configuration by configurations.creating {
-    isVisible = false
     isCanBeResolved = false
     isCanBeConsumed = false
 }
 
 // Resolvable configuration to resolve the classes of all dependencies
 val packagingPath: Configuration by configurations.creating {
-    isVisible = false
     isCanBeResolved = true
     isCanBeConsumed = false
     extendsFrom(packaging)
@@ -70,7 +68,6 @@ abstract class ClassesExtraction : TransformAction<TransformParameters.None> {
 
 // Consumable configuration such that other projects can consume the executable Jar for end2end testing
 val runtimeElements: Configuration by configurations.creating {
-    isVisible = false
     isCanBeResolved = false
     isCanBeConsumed = true
     outgoing.artifact(executableFatJar)
