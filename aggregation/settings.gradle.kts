@@ -5,7 +5,7 @@ pluginManagement {
 dependencyResolutionManagement {
     repositories.mavenCentral()
 
-    includeBuild("../gradle/platform")
+    includeBuild("../platform")
 
     includeBuild("../product/ig-server")
 

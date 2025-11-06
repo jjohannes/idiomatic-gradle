@@ -2,7 +2,7 @@ dependencyResolutionManagement {
     @Suppress("UnstableApiUsage")
     repositories.mavenCentral()
     // Platform for dependency versions shared by 'main build' and 'build-logic'
-    includeBuild("../../gradle/platform")
+    includeBuild("../../platform")
     // For end2end testing
     includeBuild("../../aggregation")
 
