@@ -17,3 +17,9 @@ jobs:
           java-version: 21
       - uses: gradle/actions/setup-gradle@v5
       - run: ./gradlew build --warning-mode=fail
+      - run: ./gradlew build --warning-mode=fail -p ig-api
+      - run: ./gradlew build --warning-mode=fail -p ig-data
+      - run: ./gradlew build --warning-mode=fail -p ig-server
+      - run: ./gradlew build --warning-mode=fail -p aggregation
+      - run: ./gradlew build --warning-mode=fail -p dependency-versions
+      - run: ./gradlew build --warning-mode=fail -p gradle-conventions
