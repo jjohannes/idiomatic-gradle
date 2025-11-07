@@ -1,0 +1,18 @@
+[libraries]
+# latest releases of own modules
+ig-api = { module = "com.example.idiomatic.gradle:server", version = "1.0" }
+ig-data = { module = "com.example.idiomatic.gradle:data", version = "1.1" }
+ig-server = { module = "com.example.idiomatic.gradle:server", version = "1.2" }
+
+# 3rd party
+jetty-bom = { module = "org.eclipse.jetty:jetty-bom", version = "9.4.30.v20200611" }
+jetty-server = { module = "org.eclipse.jetty:jetty-server" }
+jetty-servlet = { module = "org.eclipse.jetty:jetty-servlet", version = "9.4.30.v20200611" }
+
+guava = { module = "com.google.guava:guava", version = "33.5.0-jre" }
+
+httpclient = { module = "org.apache.httpcomponents:httpclient", version = "4.5.14" }
+
+junit-api = { module = "org.junit.jupiter:junit-jupiter-api", version = "6.0.1" }
+junit-engine = { module = "org.junit.jupiter:junit-jupiter-engine" }
+junit-launcher = { module = "org.junit.platform:junit-platform-launcher" }

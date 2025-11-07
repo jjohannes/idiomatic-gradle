@@ -1,37 +1,25 @@
-// This file is ONLY used to define global lifecycle tasks
-val taskGroup = "IG build"
-tasks.named<TaskReportTask>("tasks") {
-    displayGroup = taskGroup
-    doLast {
-        println("\nTo work with selected components, run ':<component>:tasks' (e.g. ':ig-data:tasks') for more information")
-    }
+plugins {
+    id("base")
 }
 
-// Register lifecycle tasks in this umbrella build.
-// A user/CI usually only needs these.
-val checkAll = tasks.register("checkAll") {
-    group = taskGroup
-    description = "Run all tests and create code coverage report"
-    dependsOn(gradle.includedBuilds.filter { it.name.startsWith("ig-") }.map { it.task(":checkAll") })
-    dependsOn(gradle.includedBuild("aggregation").task(":package-server:codeCoverageReport"))
+// Configure lifecycle tasks in this umbrella build to enable running full builds with one command
+tasks.assemble {
+    dependsOn(gradle.includedBuilds.filter { it.name != "gradle-conventions" }.map {
+        it.task(":assemble")
+    })
 }
-val buildServer = tasks.register("buildServer") {
-    group = taskGroup
-    description = "Build the Server (executable Jar)"
-    dependsOn(gradle.includedBuild("aggregation").task(":package-server:assemble"))
+tasks.check {
+    dependsOn(gradle.includedBuilds.filter { it.name != "gradle-conventions" }.map {
+        it.task(":check")
+    })
 }
-val buildClientApi = tasks.register("buildClientApi") {
-    group = taskGroup
-    description = "Build the Client API"
-    dependsOn(gradle.includedBuild("aggregation").task(":publish-api:assemble"))
+tasks.build {
+    dependsOn(gradle.includedBuilds.filter { it.name != "gradle-conventions" }.map {
+        it.task(":build")
+    })
 }
-tasks.register("publishClientApi") {
-    group = taskGroup
-    description = "Publish the Client API"
-    dependsOn(gradle.includedBuild("aggregation").task(":publish-api:publish"))
-}
-tasks.register("build") {
-    group = taskGroup
-    description = "Run all tests, build Server and Client API (without publishing)"
-    dependsOn(checkAll, buildServer, buildClientApi)
+tasks.register("publish") {
+    dependsOn(gradle.includedBuilds.map {
+        it.task(":publish")
+    })
 }
