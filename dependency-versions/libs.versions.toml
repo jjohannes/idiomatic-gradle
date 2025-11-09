@@ -4,7 +4,7 @@ renderer = "1.1"
 jamcatch = "1.6"
 
 [libraries]
-# our own modules
+# Our own modules
 javarca-model = { module = "com.example.idiomatic.gradle:javarca-model", version.ref = "javarca" }
 javarca-engine = { module = "com.example.idiomatic.gradle:javarca-engine", version.ref = "javarca" }
 renderer-lwjgl = { module = "com.example.idiomatic.gradle:renderer-lwjgl", version.ref = "renderer" }
@@ -27,6 +27,7 @@ lwjgl-glfw = { module = "org.lwjgl:lwjgl-glfw" }
 lwjgl-opengl = { module = "org.lwjgl:lwjgl-opengl" }
 lwjgl-stb = { module = "org.lwjgl:lwjgl-stb" }
 
+# Testing: JUnit
 junit-api = { module = "org.junit.jupiter:junit-jupiter-api", version = "6.0.1" }
 junit-engine = { module = "org.junit.jupiter:junit-jupiter-engine" }
 junit-launcher = { module = "org.junit.platform:junit-platform-launcher" }
