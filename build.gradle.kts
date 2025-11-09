@@ -18,6 +18,11 @@ tasks.build {
         it.task(":build")
     })
 }
+tasks.clean {
+    dependsOn(gradle.includedBuilds.filter { it.name != "gradle-conventions" }.map {
+        it.task(":clean")
+    })
+}
 tasks.register("publish") {
     dependsOn(gradle.includedBuilds.map {
         it.task(":publish")

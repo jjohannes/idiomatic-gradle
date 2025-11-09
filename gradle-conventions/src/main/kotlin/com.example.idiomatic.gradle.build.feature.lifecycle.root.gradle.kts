@@ -14,6 +14,9 @@ if (!subprojects.isEmpty()) {
     tasks.build {
         dependsOn(subprojects.map { ":${it.name}:build" })
     }
+    tasks.clean {
+        dependsOn(subprojects.map { ":${it.name}:clean" })
+    }
     tasks.register("publish") {
         dependsOn(subprojects.map { ":${it.name}:publish" })
     }
