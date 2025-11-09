@@ -1,17 +1,26 @@
 [libraries]
-# latest releases of own modules
-ig-api = { module = "com.example.idiomatic.gradle:server", version = "1.0" }
-ig-data = { module = "com.example.idiomatic.gradle:data", version = "1.1" }
-ig-server = { module = "com.example.idiomatic.gradle:server", version = "1.2" }
+# our own modules
+javarca-model = { module = "com.example.idiomatic.gradle:javarca-model", version = "1.0" }
+javarca-engine = { module = "com.example.idiomatic.gradle:javarca-engine", version = "1.0" }
+renderer-lwjgl = { module = "com.example.idiomatic.gradle:renderer-lwjgl", version = "1.1" }
+jamcatch-assets = { module = "com.example.idiomatic.gradle:jamcatch-assets", version = "1.6" }
+jamcatch-actors = { module = "com.example.idiomatic.gradle:jamcatch-actors", version = "1.6" }
+jamcatch-stage = { module = "com.example.idiomatic.gradle:jamcatch-stage", version = "1.6" }
 
-# 3rd party
-jetty-bom = { module = "org.eclipse.jetty:jetty-bom", version = "9.4.30.v20200611" }
-jetty-server = { module = "org.eclipse.jetty:jetty-server" }
-jetty-servlet = { module = "org.eclipse.jetty:jetty-servlet", version = "9.4.30.v20200611" }
+# Logging: SLF4J
+slf4j-api = { module = "org.slf4j:slf4j-api", version = "2.0.17" }
+slf4j-simple = { module = "org.slf4j:slf4j-simple" }
+slf4j-jul = {  module = "org.slf4j:slf4j-jdk14" }
 
-guava = { module = "com.google.guava:guava", version = "33.5.0-jre" }
+# Utilities: Apache Commons
+commons-csv = { module = "org.apache.commons:commons-csv", version = "1.14.1" }
+commons-io = { module = "commons-io:commons-io", version = "2.21.0" }
 
-httpclient = { module = "org.apache.httpcomponents:httpclient", version = "4.5.14" }
+# Graphics: LWJGL
+lwjgl = { module = "org.lwjgl:lwjgl", version = "3.3.6" }
+lwjgl-glfw = { module = "org.lwjgl:lwjgl-glfw" }
+lwjgl-opengl = { module = "org.lwjgl:lwjgl-opengl" }
+lwjgl-stb = { module = "org.lwjgl:lwjgl-stb" }
 
 junit-api = { module = "org.junit.jupiter:junit-jupiter-api", version = "6.0.1" }
 junit-engine = { module = "org.junit.jupiter:junit-jupiter-engine" }

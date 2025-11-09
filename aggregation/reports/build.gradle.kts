@@ -3,5 +3,7 @@ plugins {
 }
 
 dependencies {
-    implementation(libs.ig.server)
+    implementation(libs.jamcatch.actors)
+    implementation(libs.jamcatch.assets)
+    implementation(libs.jamcatch.stage)
 }

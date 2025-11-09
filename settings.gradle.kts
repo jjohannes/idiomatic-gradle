@@ -12,7 +12,7 @@ dependencyResolutionManagement {
     includeBuild("aggregation")
 
     // The actual product split into multiple components.
-    includeBuild("ig-api")
-    includeBuild("ig-data")
-    includeBuild("ig-server")
+    includeBuild("engine")
+    includeBuild("jamcatch")
+    includeBuild("renderer")
 }
