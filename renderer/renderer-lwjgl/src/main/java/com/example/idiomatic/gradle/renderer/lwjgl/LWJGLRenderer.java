@@ -99,7 +99,9 @@ public class LWJGLRenderer implements Renderer {
     private void init() {
         int SCALE = 3;
 
-        Configuration.GLFW_LIBRARY_NAME.set("glfw_async");
+        if (System.getProperty("os.name").toLowerCase().startsWith("mac")) {
+            Configuration.GLFW_LIBRARY_NAME.set("glfw_async");
+        }
         GLFWErrorCallback.createPrint(System.err).set();
         if (!glfwInit()) {
             LOG.error("Unable to initialize GLFW");

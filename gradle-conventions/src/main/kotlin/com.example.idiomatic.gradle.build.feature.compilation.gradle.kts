@@ -19,3 +19,8 @@ tasks.withType<Javadoc>().configureEach {
         addStringOption("Xdoclint:all,-missing", "-Xwerror")
     }
 }
+
+sourceSets.all {
+    // 'assemble' compiles all sources, including all test sources
+    tasks.assemble { dependsOn(tasks.named(classesTaskName)) }
+}

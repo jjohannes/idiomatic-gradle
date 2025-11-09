@@ -8,4 +8,10 @@ val junitVersion = the<VersionCatalogsExtension>().named("libs").findLibrary("ju
 @Suppress("UnstableApiUsage")
 testing.suites.register<JvmTestSuite>("end2endTest") {
     useJUnitJupiter(junitVersion)
+    targets.configureEach {
+        testTask {
+            // testing needs to be performed with a renderer implementation that uses this env setting.
+            environment("PRESENTATION_FOLDER", project.layout.buildDirectory.dir("test-screenshot").get().asFile)
+        }
+    }
 }
