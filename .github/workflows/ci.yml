@@ -16,6 +16,10 @@ jobs:
           distribution: temurin
           java-version: 21
       - uses: gradle/actions/setup-gradle@v5
+        with:
+          build-scan-publish: true
+          build-scan-terms-of-use-url: https://gradle.com/terms-of-service
+          build-scan-terms-of-use-agree: yes
       - run: ./gradlew build --warning-mode=fail
       - run: ./gradlew build --warning-mode=fail -p engine
       - run: ./gradlew build --warning-mode=fail -p renderer
