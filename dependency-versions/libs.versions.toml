@@ -1,11 +1,16 @@
+[versions]
+javarca = "1.0"
+renderer = "1.1"
+jamcatch = "1.6"
+
 [libraries]
 # our own modules
-javarca-model = { module = "com.example.idiomatic.gradle:javarca-model", version = "1.0" }
-javarca-engine = { module = "com.example.idiomatic.gradle:javarca-engine", version = "1.0" }
-renderer-lwjgl = { module = "com.example.idiomatic.gradle:renderer-lwjgl", version = "1.1" }
-jamcatch-assets = { module = "com.example.idiomatic.gradle:jamcatch-assets", version = "1.6" }
-jamcatch-actors = { module = "com.example.idiomatic.gradle:jamcatch-actors", version = "1.6" }
-jamcatch-stage = { module = "com.example.idiomatic.gradle:jamcatch-stage", version = "1.6" }
+javarca-model = { module = "com.example.idiomatic.gradle:javarca-model", version.ref = "javarca" }
+javarca-engine = { module = "com.example.idiomatic.gradle:javarca-engine", version.ref = "javarca" }
+renderer-lwjgl = { module = "com.example.idiomatic.gradle:renderer-lwjgl", version.ref = "renderer" }
+jamcatch-assets = { module = "com.example.idiomatic.gradle:jamcatch-assets", version.ref = "jamcatch" }
+jamcatch-actors = { module = "com.example.idiomatic.gradle:jamcatch-actors", version.ref = "jamcatch" }
+jamcatch-stage = { module = "com.example.idiomatic.gradle:jamcatch-stage", version.ref = "jamcatch" }
 
 # Logging: SLF4J
 slf4j-api = { module = "org.slf4j:slf4j-api", version = "2.0.17" }
