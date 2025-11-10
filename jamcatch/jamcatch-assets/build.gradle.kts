@@ -4,7 +4,7 @@ plugins {
 }
 
 dependencies {
-    implementation(libs.javarca.model)
+    api(libs.javarca.model)
     implementation(libs.commons.io)
 
     testImplementation(libs.junit.api)
