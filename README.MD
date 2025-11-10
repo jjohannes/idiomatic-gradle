@@ -30,9 +30,9 @@ This example consists of:
 
 Inside the 'product' folder, there are three components/builds:
 
-- `product/ig-server`: A server providing some services
-- `product/ig-api`: A client API Jar that clients (e.g. Android Apps) can integrate directly
-- `product/ig-common`: Some common code used by both Server and API Jar
+- `ig-server`: A server providing some services
+- `ig-api`: A client API Jar that clients (e.g. Android Apps) can integrate directly
+- `ig-common`: Some common code used by both Server and API Jar
 
 For the sake of the sample each of these folders only contain one subproject.
 In a real-world application, this can be structured into many, many more Gradle subprojects.
@@ -42,7 +42,7 @@ under a shared domain directory. Shared code should live in a clearly defined co
 rather than mixing sources and sub-modules. Doing otherwise is considered an anti-pattern.
 
 > [!WARNING]
-> This project structure for example is an anti-pattern.
+> This project structure, for example, is an anti-pattern.
 > 
 > ```
 > product/
