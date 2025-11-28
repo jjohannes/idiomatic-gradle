@@ -1,0 +1,13 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":automergeAll"
+  ],
+  "packageRules": [
+    {
+      "matchManagers": "gradle-wrapper",
+      "ignoreUnstable": false
+    }
+  ]
+}
