@@ -5,5 +5,5 @@ pluginManagement {
 }
 
 plugins {
-    id("com.example.idiomatic.gradle.build") version "0.3"
+    id("com.example.idiomatic.gradle.build") version "0.4"
 }

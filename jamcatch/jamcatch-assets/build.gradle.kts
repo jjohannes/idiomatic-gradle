@@ -9,5 +9,5 @@ dependencies {
 
     testImplementation(libs.junit.api)
 
-    end2endTestImplementation(testFixtures(libs.javarca.engine))
+    testEnd2endImplementation(testFixtures(libs.javarca.engine))
 }

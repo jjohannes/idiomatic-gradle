@@ -6,7 +6,7 @@ plugins {
 val junitVersion = the<VersionCatalogsExtension>().named("libs").findLibrary("junit.api").get().get().version
 
 @Suppress("UnstableApiUsage")
-testing.suites.register<JvmTestSuite>("end2endTest") {
+testing.suites.register<JvmTestSuite>("testEnd2end") {
     useJUnitJupiter(junitVersion)
     targets.configureEach {
         testTask {
