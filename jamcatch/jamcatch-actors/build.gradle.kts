@@ -4,10 +4,10 @@ plugins {
 }
 
 dependencies {
-    api(libs.javarca.model)
-    implementation(libs.commons.csv)
+    api("com.example.idiomatic.gradle:javarca-model")
+    implementation("org.apache.commons:commons-csv")
 
-    testImplementation(libs.junit.api)
+    testImplementation("org.junit.jupiter:junit-jupiter-api")
 
-    testEnd2endImplementation(testFixtures(libs.javarca.engine))
+    testEnd2endImplementation(testFixtures("com.example.idiomatic.gradle:javarca-engine"))
 }

@@ -9,9 +9,9 @@ plugins {
 // Versions of 3rd party libraries are provided through a catalog.
 jvmDependencyConflicts {
     // Set up consistent version management through a platform (BOM)
-    val catalogVersion = the<CatalogVersion>().version.getOrElse("")
+    val bomVersion = the<BOMVersion>().version.getOrElse("")
     consistentResolution {
-        platform("com.example.idiomatic.gradle:dependency-versions:$catalogVersion")
+        platform("com.example.idiomatic.gradle:dependency-versions:$bomVersion")
     }
 
     // Add missing information to metadata of 3rd-party libraries.

@@ -4,10 +4,10 @@ plugins {
 }
 
 dependencies {
-    api(libs.javarca.model)
-    implementation(libs.slf4j.api)
+    api("com.example.idiomatic.gradle:javarca-model")
+    implementation("org.slf4j:slf4j-api")
 
-    testImplementation(libs.junit.api)
+    testImplementation("org.junit.jupiter:junit-jupiter-api")
 
-    testEnd2endImplementation(testFixtures(libs.javarca.engine))
+    testEnd2endImplementation(testFixtures("com.example.idiomatic.gradle:javarca-engine"))
 }

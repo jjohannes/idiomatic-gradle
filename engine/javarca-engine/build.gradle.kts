@@ -4,12 +4,12 @@ plugins {
 }
 
 dependencies {
-    api(libs.javarca.model)
-    implementation(libs.slf4j.api)
+    api("com.example.idiomatic.gradle:javarca-model")
+    implementation("org.slf4j:slf4j-api")
 
-    testImplementation(libs.junit.api)
+    testImplementation("org.junit.jupiter:junit-jupiter-api")
 
-    testFixturesImplementation(libs.slf4j.api)
-    testFixturesRuntimeOnly(libs.renderer.lwjgl)
-    testFixturesRuntimeOnly(libs.slf4j.simple)
+    testFixturesImplementation("org.slf4j:slf4j-api")
+    testFixturesRuntimeOnly("com.example.idiomatic.gradle:renderer-lwjgl")
+    testFixturesRuntimeOnly("org.slf4j:slf4j-simple")
 }

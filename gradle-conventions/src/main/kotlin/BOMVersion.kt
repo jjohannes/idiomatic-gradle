@@ -1,5 +1,5 @@
 import org.gradle.api.provider.Property
 
-interface CatalogVersion {
+interface BOMVersion {
     val version: Property<String>
 }

@@ -5,10 +5,10 @@ plugins {
 application { mainClass = "com.example.idiomatic.gradle.javarca.engine.Engine" }
 
 dependencies {
-    runtimeOnly(libs.jamcatch.actors)
-    runtimeOnly(libs.jamcatch.assets)
-    runtimeOnly(libs.jamcatch.stage)
-    runtimeOnly(libs.javarca.engine)
-    runtimeOnly(libs.renderer.lwjgl)
-    runtimeOnly(libs.slf4j.simple)
+    runtimeOnly("com.example.idiomatic.gradle:jamcatch-actors")
+    runtimeOnly("com.example.idiomatic.gradle:jamcatch-assets")
+    runtimeOnly("com.example.idiomatic.gradle:jamcatch-stage")
+    runtimeOnly("com.example.idiomatic.gradle:javarca-engine")
+    runtimeOnly("com.example.idiomatic.gradle:renderer-lwjgl")
+    runtimeOnly("org.slf4j:slf4j-simple")
 }
