@@ -4,6 +4,13 @@ plugins {
     id("base")
 }
 
+// Convenience for local development: when running './gradlew' without parameters, show the tasks...
+defaultTasks("tasks")
+if (gradle.startParameter.taskNames.isEmpty()) {
+    // ...of group 'build' only
+    tasks.withType<TaskReportTask>().configureEach { displayGroup = "build" }
+}
+
 if (!subprojects.isEmpty()) {
     tasks.assemble {
         dependsOn(subprojects.map { ":${it.name}:assemble" })

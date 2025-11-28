@@ -1,5 +1,5 @@
 plugins {
-    id("base")
+    id("com.example.idiomatic.gradle.build.feature.lifecycle.root")
 }
 
 // Configure lifecycle tasks in this umbrella build to enable running full builds with one command
