@@ -3,7 +3,7 @@ plugins {
     id("java-library")
 }
 
-val junitVersion = the<VersionCatalogsExtension>().named("libs").findLibrary("junit.api").get().get().version
+val junitVersion = the<VersionCatalogsExtension>().named("libs").findLibrary("junit.api").get().get().version!!
 
 @Suppress("UnstableApiUsage")
 testing.suites.register<JvmTestSuite>("testEnd2end") {
