@@ -3,12 +3,12 @@ plugins {
 }
 
 dependencies {
-    api(libs.javarca.engine)
-    implementation(libs.lwjgl)
-    implementation(libs.lwjgl.glfw)
-    implementation(libs.lwjgl.opengl)
-    implementation(libs.lwjgl.stb)
-    implementation(libs.slf4j.api)
+    api("com.example.idiomatic.gradle:javarca-engine")
+    implementation("org.lwjgl:lwjgl")
+    implementation("org.lwjgl:lwjgl-glfw")
+    implementation("org.lwjgl:lwjgl-opengl")
+    implementation("org.lwjgl:lwjgl-stb")
+    implementation("org.slf4j:slf4j-api")
 
-    testImplementation(libs.junit.api)
+    testImplementation("org.junit.jupiter:junit-jupiter-api")
 }

@@ -3,7 +3,7 @@ plugins {
 }
 
 dependencies {
-    implementation(libs.jamcatch.actors)
-    implementation(libs.jamcatch.assets)
-    implementation(libs.jamcatch.stage)
+    implementation("com.example.idiomatic.gradle:jamcatch-actors")
+    implementation("com.example.idiomatic.gradle:jamcatch-assets")
+    implementation("com.example.idiomatic.gradle:jamcatch-stage")
 }
