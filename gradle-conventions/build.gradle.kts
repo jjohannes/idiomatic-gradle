@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "com.example.idiomatic.gradle"
-version = "0.4"
+version = "0.5"
 
 dependencies {
     // examples of using a Gradle community plugin
