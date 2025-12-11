@@ -1,5 +1,5 @@
 pluginManagement {
-    if (gradle.parent != null) { includeBuild("../gradle-conventions") }
+    if (gradle.parent != null) { includeBuild("../idiomatic-gradle/gradle-conventions") }
     repositories.maven("https://repo.onepiece.software/releases")
     repositories.gradlePluginPortal()
 }

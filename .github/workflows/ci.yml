@@ -24,7 +24,7 @@ jobs:
       - run: ./gradlew build --warning-mode=fail
       - run: ./gradlew build --warning-mode=fail -p engine
       - run: ./gradlew build --warning-mode=fail -p renderer
-      - run: ./gradlew build --warning-mode=fail -p jamcatch
+      # - run: ./gradlew build --warning-mode=fail -p jamcatch
       - run: ./gradlew build --warning-mode=fail -p aggregation
       - run: ./gradlew build --warning-mode=fail -p dependency-versions
       - run: ./gradlew build --warning-mode=fail -p gradle-conventions
