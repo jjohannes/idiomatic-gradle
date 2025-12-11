@@ -4,8 +4,6 @@ pluginManagement {
 
 rootProject.name = "idiomatic-gradle"
 
-File(rootDir, "jamcatch").copyRecursively(File(rootDir, "../jamcatch"))
-
 dependencyResolutionManagement {
     // Version management of all external libraries
     includeBuild("dependency-versions")
@@ -15,6 +13,6 @@ dependencyResolutionManagement {
 
     // The actual product split into multiple components.
     includeBuild("engine")
-    includeBuild("../jamcatch")
+    includeBuild("jamcatch")
     includeBuild("renderer")
 }
