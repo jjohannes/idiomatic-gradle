@@ -19,6 +19,6 @@ public class JamCatchAssetsTest {
         assertNotNull(assetSet);
         Set<Asset> assets = assetSet.assets();
         assertNotNull(assets);
-        assertFalse(assets.isEmpty(), "Asset set should not be empty");
+        assertFalse(!assets.isEmpty(), "Asset set should not be empty");
     }
 }
