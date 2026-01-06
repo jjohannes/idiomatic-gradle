@@ -28,6 +28,6 @@ lwjgl-opengl = { module = "org.lwjgl:lwjgl-opengl" }
 lwjgl-stb = { module = "org.lwjgl:lwjgl-stb" }
 
 # Testing: JUnit
-junit-api = { module = "org.junit.jupiter:junit-jupiter-api", version = "6.0.1" }
+junit-api = { module = "org.junit.jupiter:junit-jupiter-api", version = "6.0.2" }
 junit-engine = { module = "org.junit.jupiter:junit-jupiter-engine" }
 junit-launcher = { module = "org.junit.platform:junit-platform-launcher" }
