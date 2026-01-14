@@ -91,7 +91,7 @@ Inside a _product_, shared code should live in a clearly
 defined common _module_ (like [engine/javarca-model](engine/javarca-model) in the example).
 
 > [!WARNING]
-> Putting comment code into a parent folder is an anti-pattern!
+> Putting _common_ code into a parent folder is an anti-pattern!
 > 
 > ```
 > └── engine/
