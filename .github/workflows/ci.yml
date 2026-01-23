@@ -20,7 +20,7 @@ jobs:
           build-scan-publish: true
           build-scan-terms-of-use-url: https://gradle.com/terms-of-service
           build-scan-terms-of-use-agree: yes
-      - uses: testlens-app/setup-testlens@v1.6.0
+      - uses: testlens-app/setup-testlens@v1.6.1
       - run: ./gradlew build --warning-mode=fail
       - run: ./gradlew build --warning-mode=fail -p engine
       - run: ./gradlew build --warning-mode=fail -p renderer
