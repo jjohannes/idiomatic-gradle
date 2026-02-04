@@ -22,7 +22,7 @@ commons-csv = { module = "org.apache.commons:commons-csv", version = "1.14.1" }
 commons-io = { module = "commons-io:commons-io", version = "2.21.0" }
 
 # Graphics: LWJGL
-lwjgl = { module = "org.lwjgl:lwjgl", version = "3.4.0" }
+lwjgl = { module = "org.lwjgl:lwjgl", version = "3.4.1" }
 lwjgl-glfw = { module = "org.lwjgl:lwjgl-glfw" }
 lwjgl-opengl = { module = "org.lwjgl:lwjgl-opengl" }
 lwjgl-stb = { module = "org.lwjgl:lwjgl-stb" }
