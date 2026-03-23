@@ -15,7 +15,7 @@ jobs:
         with:
           distribution: temurin
           java-version: 21
-      - uses: gradle/actions/setup-gradle@v5
+      - uses: gradle/actions/setup-gradle@v6
         with:
           build-scan-publish: true
           build-scan-terms-of-use-url: https://gradle.com/terms-of-service
