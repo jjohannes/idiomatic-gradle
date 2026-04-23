@@ -19,7 +19,7 @@ slf4j-jul = {  module = "org.slf4j:slf4j-jdk14" }
 
 # Utilities: Apache Commons
 commons-csv = { module = "org.apache.commons:commons-csv", version = "1.14.1" }
-commons-io = { module = "commons-io:commons-io", version = "2.21.0" }
+commons-io = { module = "commons-io:commons-io", version = "2.22.0" }
 
 # Graphics: LWJGL
 lwjgl = { module = "org.lwjgl:lwjgl", version = "3.4.1" }
