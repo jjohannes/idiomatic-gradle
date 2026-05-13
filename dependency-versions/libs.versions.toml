@@ -13,7 +13,7 @@ jamcatch-actors = { module = "com.example.idiomatic.gradle:jamcatch-actors", ver
 jamcatch-stage = { module = "com.example.idiomatic.gradle:jamcatch-stage", version.ref = "jamcatch" }
 
 # Logging: SLF4J
-slf4j-api = { module = "org.slf4j:slf4j-api", version = "2.0.17" }
+slf4j-api = { module = "org.slf4j:slf4j-api", version = "2.0.18" }
 slf4j-simple = { module = "org.slf4j:slf4j-simple" }
 slf4j-jul = {  module = "org.slf4j:slf4j-jdk14" }
 
