@@ -14,7 +14,7 @@ jobs:
       - uses: actions/setup-java@v6
         with:
           distribution: temurin
-          java-version: 21.0.12+101.0.LTS
+          java-version: 25.0.4+101.0.LTS
       - uses: gradle/actions/setup-gradle@v6
         with:
           build-scan-publish: true
