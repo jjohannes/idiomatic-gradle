@@ -7,12 +7,12 @@ This project shows how to use Gradle in a structured way not only for simple, bu
 > - 🎞️ [**Understanding Gradle**](https://youtube.com/@jjohannes) video series
 >
 > There are two sister repositories that share the same example with a different focus in the build setup:
-> - 🧶 [**gradle-project-setup-howto**](https://github.com/jjohannes/gradle-project-setup-howto) Focus on a full mono-repo setup
-> - 🕹️ [**javarcade**](https://github.com/jjohannes/javarcade) Focus on structured dependency management with the JavaRCA recipe
+> - 🧶 [**gradle-project-setup-howto**](https://codeberg.org/jjohannes/gradle-project-setup-howto) Focus on a full mono-repo setup
+> - 🕹️ [**javarcade**](https://codeberg.org/jjohannes/javarcade) Focus on structured dependency management with the JavaRCA recipe
 > 
 > This project uses Gradle's Kotlin DSL for configuration files. However, you can use any JVM language (including pure Java!)
 > to configure Gradle. More details on that can be found here:
-> - 🔌 [**gradle-plugins-howto**](https://github.com/jjohannes/gradle-plugins-howto) Details on the plugin concept alternative implementation solutions
+> - 🔌 [**gradle-plugins-howto**](https://codeberg.org/jjohannes/gradle-plugins-howto) Details on the plugin concept alternative implementation solutions
 >
 > This example uses the `build.gradle.kts` files as dependency definition files. An alternative approach is to use 
 > `module-info.java` files, as part of the Java Module System (JPMS), to define dependencies directly in Java instead
@@ -152,19 +152,19 @@ In this case, though, it is a build producing Gradle plugins, rather than module
 
 ## Discussions and alternative structuring options
 
-- [Using or not using a Version Catalog](https://github.com/jjohannes/idiomatic-gradle/issues/4)
-- [Folder name/location for convention plugins](https://github.com/jjohannes/idiomatic-gradle/issues/11)
-- [Name of Version Catalog TOML file](https://github.com/jjohannes/idiomatic-gradle/issues/15)
-- [Name of 'Settings Plugin' project](https://github.com/jjohannes/idiomatic-gradle/issues/8)
-- [Using JVM packages for precompiled script plugins](https://github.com/jjohannes/idiomatic-gradle/issues/9)
+- [Using or not using a Version Catalog](https://codeberg.org/jjohannes/idiomatic-gradle/issues/4)
+- [Folder name/location for convention plugins](https://codeberg.org/jjohannes/idiomatic-gradle/issues/11)
+- [Name of Version Catalog TOML file](https://codeberg.org/jjohannes/idiomatic-gradle/issues/15)
+- [Name of 'Settings Plugin' project](https://codeberg.org/jjohannes/idiomatic-gradle/issues/8)
+- [Using JVM packages for precompiled script plugins](https://codeberg.org/jjohannes/idiomatic-gradle/issues/9)
 
-More questions or points you would like to discuss? Please [open an issue](https://github.com/jjohannes/idiomatic-gradle/issues/new).
+More questions or points you would like to discuss? Please [open an issue](https://codeberg.org/jjohannes/idiomatic-gradle/issues/new).
 
 ## FAQ
 
-- [buildSrc vs. Composite Build for convention plugins](https://github.com/jjohannes/idiomatic-gradle/issues/16)
-- [Where to put the Gradle Wrapper](https://github.com/jjohannes/idiomatic-gradle/issues/12)
-- [How to use an external plugin in a local plugin and where to put its version](https://github.com/jjohannes/idiomatic-gradle/issues/14)
-- [Android Studio: 'gradle/plugins' project clean uses different Gradle version](https://github.com/jjohannes/idiomatic-gradle/issues/5)
+- [buildSrc vs. Composite Build for convention plugins](https://codeberg.org/jjohannes/idiomatic-gradle/issues/16)
+- [Where to put the Gradle Wrapper](https://codeberg.org/jjohannes/idiomatic-gradle/issues/12)
+- [How to use an external plugin in a local plugin and where to put its version](https://codeberg.org/jjohannes/idiomatic-gradle/issues/14)
+- [Android Studio: 'gradle/plugins' project clean uses different Gradle version](https://codeberg.org/jjohannes/idiomatic-gradle/issues/5)
 
-More questions or points you would like to discuss? Please [open an issue](https://github.com/jjohannes/idiomatic-gradle/issues/new).
+More questions or points you would like to discuss? Please [open an issue](https://codeberg.org/jjohannes/idiomatic-gradle/issues/new).
